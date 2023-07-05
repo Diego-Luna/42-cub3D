@@ -6,20 +6,21 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:47:18 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/03 15:40:13 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/05 18:46:39 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub.h"
 
-int ft_check_file(char *file){
+int ft_check_file(char *file, t_state *state){
 
 	int		i;
 	int		fd;
-	char	*line;
 
 	i = -1;
 	fd = open(file, O_RDONLY);
-	// line = ft_gnl(fd)
+	if (fd == -1)
+		ft_error_print("File not exists", state);
+	close(fd);
 	return TRUE;
 }
