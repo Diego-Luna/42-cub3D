@@ -6,13 +6,14 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/06 12:16:52 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:29:31 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub.h"
 
-void save_imgs(t_state *state, char *file){
+void	save_imgs(t_state *state, char *file)
+{
 	int		fd;
 	char	*line;
 
@@ -26,26 +27,9 @@ void save_imgs(t_state *state, char *file){
 	close(fd);
 	(void)state;
 }
-// void save_map(t_state *state, char *file){
 
-// 	char	*line;
-
-// 	line = get_next_line(file);
-// 	state->height	= 0;
-// 	state->width = 0;
-// 	if (line == NULL)
-// 		return
-// 	state->width = ft_strlen(line);
-// 	while (line != NULL)
-// 	{
-// 		line = get_next_line(file);
-// 		state->height++;
-// 		if (state->width < ft_strlen(line))
-// 			state->width = ft_strlen(line);
-// 	}
-// }
-
-void save_data(t_state *state, char *file){
+void	save_data(t_state *state, char *file)
+{
 	int		i;
 	int		fd;
 	char	*line;
@@ -62,10 +46,9 @@ void save_data(t_state *state, char *file){
 		i++;
 	}
 	close(fd);
-	if (i < 9){
+	if (i < 9)
+	{
 		ft_error_print("Error in map", state);
 	}
 	save_imgs(state, file);
-	// save_colors(state, file);
-	// save_map(state, file);
 }

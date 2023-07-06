@@ -6,23 +6,26 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:12:20 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/06 12:34:49 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:01:21 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub.h"
 
-void ft_exit(int error){
+void	ft_exit(int error)
+{
 	exit(error);
 }
 
-void ft_error_print(char *str, t_state *state){
-	char *ms;
+void	ft_error_print(char *str, t_state *state)
+{
+	char	*msg;
 
-	ms = ft_strjoin("Error: ", str);
-	ft_putendl_fd(ms, 2);
-	ft_free(ms);
-	ft_free_state(state);
+	msg = ft_strjoin("🛑 Error: ", str);
+	ft_putendl_fd(msg, 2);
+	ft_free(msg);
+	if (state)
+		ft_free_state(state);
 	ft_exit(1);
 }
 
@@ -41,8 +44,9 @@ char	*ft_free(char *src)
 
 char	**ft_free_table(char **src)
 {
-	size_t i = 0;
+	size_t	i;
 
+	i = 0;
 	if (!src)
 	{
 		return (NULL);
@@ -56,7 +60,8 @@ char	**ft_free_table(char **src)
 	return (NULL);
 }
 
-void	ft_free_state(t_state *state){
+void	ft_free_state(t_state *state)
+{
 	ft_free(state->path_ea);
 	ft_free(state->path_no);
 	ft_free(state->path_so);
