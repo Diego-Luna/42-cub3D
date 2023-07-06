@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/05 19:06:23 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:16:52 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void save_imgs(t_state *state, char *file){
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		ft_free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);

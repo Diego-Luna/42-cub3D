@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:12:20 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/05 18:48:38 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:34:49 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,6 @@ void ft_error_print(char *str, t_state *state){
 	ft_exit(1);
 }
 
-void	ft_free_state(t_state *state){
-	size_t i = 0;
-
-	ft_free(state->path_ea);
-	ft_free(state->path_no);
-	ft_free(state->path_so);
-	ft_free(state->path_we);
-	while (i < (size_t)state->height)
-	{
-		ft_free(state->map[i]);
-		i++;
-	}
-	free(state->map);
-}
-
 char	*ft_free(char *src)
 {
 	if (!src)
@@ -52,4 +37,29 @@ char	*ft_free(char *src)
 		free(src);
 	}
 	return (NULL);
+}
+
+char	**ft_free_table(char **src)
+{
+	size_t i = 0;
+
+	if (!src)
+	{
+		return (NULL);
+	}
+	while (src[i])
+	{
+		ft_free(src[i]);
+		i++;
+	}
+	free(src);
+	return (NULL);
+}
+
+void	ft_free_state(t_state *state){
+	ft_free(state->path_ea);
+	ft_free(state->path_no);
+	ft_free(state->path_so);
+	ft_free(state->path_we);
+	ft_free_table(state->map);
 }

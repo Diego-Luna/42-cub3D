@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/05 18:54:42 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/06 12:00:04 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,9 @@ void save_data(t_state *state, char *file);
 void	ft_error_print(char *str, t_state *state);
 void	ft_free_state(t_state *state);
 char	*ft_free(char *src);
+
+// str
+char *ft_cut_space(char *str, size_t start);
+int	ft_str_equals(char *str_1, char *str_2);
 
 #endif

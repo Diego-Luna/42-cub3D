@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/05 18:34:25 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/07/06 11:38:47 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INC		=	libs/cub.h
 
 # Sources are all .c files
 SRCDIR	=	src/
-SRCS =	src/main.c src/Error.c src/ft_check_file.c src/save_data.c
+SRCS =	src/main.c src/Error.c src/ft_check_file.c src/save_data.c src/str_1.c
 
 # Objects are all .o files
 OBJDIR	=	bin/
