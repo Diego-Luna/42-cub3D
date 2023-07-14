@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:11:50 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/06 17:08:10 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:11:33 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,77 +56,65 @@ int	ft_str_equals(char *str_1, char *str_2)
 	return (TRUE);
 }
 
-void ft_cut_word_utils_1(size_t *start, size_t i, size_t *end){
+void	ft_cut_word_utils_1(size_t *start, size_t i, size_t *end)
+{
 	start = &i;
 	end = 0;
 }
-void ft_cut_word_utils_2(int *nu, size_t i, size_t *end){
+
+void	ft_cut_word_utils_2(int *nu, size_t i, size_t *end)
+{
 	end = &i;
 	nu--;
 }
 
-char	*ft_cut_word(char *st, char cu, int nu)
+char	*ft_cut_word(char *str, char cut, int number)
 {
 	size_t	i;
 	size_t	start;
 	size_t	end;
+	int		word;
 
 	i = 0;
 	start = 0;
 	end = 0;
-	while (st[i])
+	word = FALSE;
+	if (number <= 0)
+		return (NULL);
+	while (str[i])
 	{
-		if (st[i] != cu && st[i] != '\n' && st[i] != '\0' && nu > 0 && end != 0)
-			ft_cut_word_utils_1(&start, i , &end)
-		else if ((st[i] == cu || st[i] == '\n' || st[i] == '\0') && nu > 0)
-			ft_cut_word_utils_2(&nu, i, &end);
+		if (word == FALSE && str[i] != cut && number > 0)
+		{
+			start = i;
+			word = TRUE;
+		}
+		if (word == TRUE && (str[i] == cut || str[i] == '\n') && number > 0)
+		{
+			end = i;
+			word = FALSE;
+			number--;
+		}
 		i++;
 	}
-	if (nu != 0)
+	if (word == TRUE)
+	{
+		end = i;
+		number--;
+	}
+	if (number != 0)
 		return (NULL);
-	return (ft_substr(st, start, end - start));
+	return (ft_substr(str, start, end - start));
 }
-
-// char	*ft_cut_word(char *str, char cut, int number)
-// {
-// 	size_t	i;
-// 	size_t	start;
-// 	size_t	end;
-// 	int		word;
-
-// 	i = 0;
-// 	start = 0;
-// 	end = 0;
-// 	word = FALSE;
-// 	if (number <= 0)
-// 		return (NULL);
-// 	while (str[i])
-// 	{
-// 		if (word == FALSE && str[i] != cut && number > 0)
-// 		{
-// 			start = i;
-// 			word = TRUE;
-// 		}
-// 		if (word == TRUE && (str[i] == cut || str[i] == '\n') && number > 0)
-// 		{
-// 			end = i;
-// 			word = FALSE;
-// 			number--;
-// 		}
-// 		i++;
-// 	}
-// 	if (number != 0)
-// 		return (NULL);
-// 	// printf("\n --> Diego number{%d} start{%zu} end{%zu}",number,  start, end);
-// 	return (ft_substr(str, start, end - start));
-// }
 
 int	ft_count_words(char *str, char cut)
 {
-	size_t i = 0;
-	int number = 0;
-	int word = FALSE;
+	size_t	i;
+	int		number;
+	int		word;
 
+	i = 0;
+	number = 0;
+	word = FALSE;
 	while (str[i])
 	{
 		if (word == FALSE && str[i] != cut)
@@ -138,5 +126,21 @@ int	ft_count_words(char *str, char cut)
 		}
 		i++;
 	}
+	if (word == TRUE)
+		number++;
 	return (number);
+}
+
+int			ft_str_is_number(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

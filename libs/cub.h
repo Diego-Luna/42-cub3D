@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/06 16:09:37 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:02:37 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ char		*ft_cut_space(char *str, size_t start);
 int			ft_str_equals(char *str_1, char *str_2);
 char		*ft_cut_word(char *str, char cut, int number);
 int			ft_count_words(char *str, char cut);
+int			ft_str_is_number(char *str);
 
 #endif

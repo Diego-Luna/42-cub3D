@@ -3,7 +3,7 @@ SO ./maps/texture/path_to_the_north_texture
 WE ./maps/texture/path_to_the_north_texture
 EA ./maps/texture/path_to_the_north_texture
 
-F 220,100,0
+F 220,00,0
 C 225,30,0
 
 1111111111111111111111111

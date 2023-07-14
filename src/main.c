@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/06 16:10:03 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:08:11 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 	state.map = NULL;
 	if (argc != 2 || ft_check_file(argv[1], &state) == FALSE)
 		ft_error_print("error in file ", &state);
-	printf("🤟 run 🤟");
+	printf("\n🤟 run 🤟\n");
 	ft_free_state(&state);
 	return (0);
 }
