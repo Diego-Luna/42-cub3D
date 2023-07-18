@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/14 19:02:37 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:48:23 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,21 @@ typedef struct s_state
 	char	*path_we;
 	char	*path_ea;
 	char	**map;
-	int		height;
-	int		width;
+	int		start_map;
+	int		end_map;
+	size_t		height;
+	size_t		width;
 }			t_state;
 
 // check file
 int			ft_check_file(char *file, t_state *state);
 int			ft_check_path(char *file);
+int		ft_is_map(char *str);
+int 	ft_check_map(t_state *state);
 
 // Save data
-void		save_data(t_state *state, char *file);
+void		ft_save_data(t_state *state, char *file);
+void		ft_print_map(t_state *state);
 
 // Error
 void		ft_error_print(char *str, t_state *state);
