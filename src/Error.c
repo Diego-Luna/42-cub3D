@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:12:20 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/06 16:01:21 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:53:44 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ char	**ft_free_table(char **src)
 
 void	ft_free_state(t_state *state)
 {
-	ft_free(state->path_ea);
-	ft_free(state->path_no);
-	ft_free(state->path_so);
-	ft_free(state->path_we);
-	ft_free_table(state->map);
+	ft_free(state->map.path_ea);
+	ft_free(state->map.path_no);
+	ft_free(state->map.path_so);
+	ft_free(state->map.path_we);
+	ft_free_table(state->map.map);
 }
