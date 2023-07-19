@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:47:18 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/19 15:52:38 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:51:41 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ int	ft_check_file_color(char *str, int *img)
 	cut = ft_cut_space(str, 0);
 	if (ft_str_equals(cut, "F") == TRUE || ft_str_equals(cut, "C") == TRUE)
 	{
+		if (ft_str_equals(cut, "F") == TRUE)
+			img[6]++;
+		if (ft_str_equals(cut, "C") == TRUE)
+			img[7]++;
 		if (ft_count_words(str, ' ') != 2)
 			return (ft_free(cut), FALSE);
 		cut_2 = ft_cut_word(str, ' ', 2);
@@ -88,7 +92,7 @@ int	ft_check_file_img(char *str, int *img)
 int	ft_check_file_check(t_state *state, int *img, int line)
 {
 	(void)state;
-	if (img[5] != 2)
+	if (img[5] != 2 || img[6] != 1 || img[7] != 1)
 		return (FALSE);
 	if ((img[0] == 0 || img[0] > 1) || (img[1] == 0 || img[1] > 1)
 		|| (img[2] == 0 || img[2] > 1) || (img[3] == 0 || img[3] > 1))
@@ -116,7 +120,7 @@ int	ft_check_file_img_color(char *file, t_state *state)
 {
 	int		fd;
 	char	*str;
-	int		img[6];
+	int		img[8];
 	int		ft[3];
 
 	fd = open(file, O_RDONLY);
@@ -127,6 +131,8 @@ int	ft_check_file_img_color(char *file, t_state *state)
 	img[2] = 0;
 	img[3] = 0;
 	img[5] = 0;
+	img[6] = 0;
+	img[7] = 0;
 	ft[2] = 0;
 	str = get_next_line(fd);
 	ft[2]++;

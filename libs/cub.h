@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/19 16:31:37 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:55:57 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@
 typedef struct s_map
 {
 	char	*path_no;
+	int	n_no;
 	char	*path_so;
+	int	n_so;
 	char	*path_we;
+	int	n_we;
 	char	*path_ea;
+	int	n_ea;
 	char	**map;
 	int		start_map;
 	int		end_map;
