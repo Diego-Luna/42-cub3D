@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:35:22 by dluna-lo          #+#    #+#             */
-/*   Updated: 2022/11/17 16:35:23 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:01:14 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void				ft_putendl_fd(char *s, int fd);
 
 /* malloc */
 char				*ft_strdup(const char *s1);
+char				*ft_strdup2(const char *s1);
 void				*ft_calloc(size_t count, size_t size);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 

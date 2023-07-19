@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:48:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2022/11/15 15:09:47 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:00:39 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	ft_read_line(int fd, char **save, char **temporary)
 			return ;
 		}
 		buf[status] = '\0';
-		*temporary = ft_strdup(*save);
+		*temporary = ft_strdup2(*save);
 		ft_strs_cleans(save, 0, 0);
 		*save = ft_join_strs(*temporary, buf);
 		ft_strs_cleans(temporary, 0, 0);
@@ -100,7 +100,7 @@ char	*ft_parse_line(char **save, char **temporary)
 {
 	char	*line;
 
-	*temporary = ft_strdup(*save);
+	*temporary = ft_strdup2(*save);
 	ft_strs_cleans(save, 0, 0);
 	*save = get_after_newline(*temporary);
 	line = get_before_newline(*temporary);

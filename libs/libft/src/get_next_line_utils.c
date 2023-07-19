@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:49:00 by dluna-lo          #+#    #+#             */
-/*   Updated: 2022/11/15 15:09:44 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/18 17:01:28 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ void	*ft_malloc_zero(size_t count, size_t size)
 	return (clean_total);
 }
 
-char	*ft_strdup(const char *str_1)
+char	*ft_strdup2(const char *str_1)
 {
 	int		i;
 	char	*str_2;
 
 	if (!str_1)
 	{
-		return (ft_strdup(""));
+		return (ft_strdup2(""));
 	}
 	i = 0;
 	while (str_1[i])
