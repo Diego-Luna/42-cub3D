@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/17 15:43:45 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/07/19 16:06:10 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ RM_F		=	rm -rf
 # Includes are all .h files
 INCDIR	=	libs/
 INC		=	libs/cub.h
+MLX		= ${HOME}/.brew/lib/
+LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+#-framework Cocoa -framework OpenGL -framework IOKit
 
 # Sources are all .c files
 SRCDIR	=	src/
@@ -42,7 +45,7 @@ all: do_libft $(NAME)
 
 # Generates output file
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) $(D_LIBFT)$(LIBFT)
+	$(CC) $(CFLAGS) -o $@ $(OBJS) ${LIB_MLX} $(D_LIBFT)$(LIBFT)
 
 # Compiles sources into objects
 $(OBJS): $(OBJDIR)%.o : $(SRCDIR)%.c $(INC) | $(OBJDIR)

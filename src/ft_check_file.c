@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:47:18 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/18 16:20:23 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/19 15:52:38 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int	ft_check_file(char *file, t_state *state)
 	i[1] = ft_check_file_img_color(file, state);
 	if (i[1] == FALSE)
 		return (FALSE);
-	state->start_map = i[1];
+	state->map.start_map = i[1];
 	i[0] = 0;
 	map = TRUE;
 	fd = open(file, O_RDONLY);
@@ -191,7 +191,7 @@ int	ft_check_file(char *file, t_state *state)
 		str = get_next_line(fd);
 		i[0]++;
 	}
-	state->end_map = i[0];
+	state->map.end_map = i[0];
 	close(fd);
 	return (map);
 }

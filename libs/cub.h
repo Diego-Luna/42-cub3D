@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/18 17:48:23 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/19 16:31:37 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,18 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
-
+# include <stdlib.h>
+# include <stdbool.h>
 # include "./libft/libft.h"
+# include "./MLX42/include/MLX42/MLX42.h"
 
 # define FALSE 0
 # define TRUE 1
 
-typedef struct s_state
+#define WIDTH 512
+#define HEIGHT 512
+
+typedef struct s_map
 {
 	char	*path_no;
 	char	*path_so;
@@ -33,6 +38,11 @@ typedef struct s_state
 	int		end_map;
 	size_t		height;
 	size_t		width;
+}		t_map;
+
+typedef struct s_state
+{
+	t_map map;
 }			t_state;
 
 // check file

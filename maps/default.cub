@@ -1,10 +1,10 @@
-C 225,30,0
+                            WE ./maps/texture/path_to_the_north_texture
 SO ./maps/texture/path_to_the_north_texture
 NO ./maps/texture/path_to_the_north_texture
 EA ./maps/texture/path_to_the_north_texture
 
-F 220,00,0
-WE ./maps/texture/path_to_the_north_texture
+F 0,00,0
+C 225,30,0
 
 1111111111111111111111111
 1000001000110000000000001
