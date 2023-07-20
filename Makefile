@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/20 17:40:31 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/07/20 19:04:38 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,10 @@ LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/
 
 # Sources are all .c files
 SRCDIR	=	src/
-SRCS =	src/main.c src/Error.c src/ft_check_file.c src/save_data.c src/str_1.c
+SRCS =	src/main.c \
+				src/utils/Error.c \
+				src/utils/str_1.c \
+				src/parsing/ft_check_file.c src/parsing/save_data.c
 
 # Objects are all .o files
 OBJDIR	=	bin/
