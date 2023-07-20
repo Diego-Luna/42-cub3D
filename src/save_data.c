@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/19 17:35:47 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/20 18:59:40 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*ft_clean_last(char *str, t_state *state)
 	return (new);
 }
 
-void	ft_save_data(t_state *state, char *file)
+void	ft_save_map(t_state *state, char *file)
 {
 	int		i;
 	int		ii;
@@ -113,6 +113,62 @@ void	ft_save_data(t_state *state, char *file)
 	close(fd);
 }
 
+void	ft_save_color(t_state *state, char *file){
+	int fd;
+	char	*line;
+	char	*cut;
+
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		cut = ft_cut_space(line, 0);
+		if (ft_str_equals(cut, "F") == TRUE){
+			state->map.f_color =  ft_cut_word(line, ' ', 2);
+		}
+		else if (ft_str_equals(cut, "C") == TRUE){
+			state->map.c_color =  ft_cut_word(line, ' ', 2);
+		}
+		cut = ft_free(cut);
+		line = ft_free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+}
+
+void	ft_save_img(t_state *state, char *file)
+{
+	int fd;
+	char	*line;
+	char	*cut;
+
+	fd = open(file, O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		cut = ft_cut_space(line, 0);
+		if (ft_str_equals(cut, "NO") == TRUE)
+			state->map.path_no =  ft_cut_word(line, ' ', 2);
+		else if (ft_str_equals(cut, "SO") == TRUE)
+			state->map.path_so =  ft_cut_word(line, ' ', 2);
+		else if (ft_str_equals(cut, "WE") == TRUE)
+			state->map.path_we =  ft_cut_word(line, ' ', 2);
+		else if (ft_str_equals(cut, "EA") == TRUE)
+			state->map.path_ea =  ft_cut_word(line, ' ', 2);
+		cut = ft_free(cut);
+		line = ft_free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+}
+
+void	ft_save_data(t_state *state, char *file)
+{
+	ft_save_map(state, file);
+	ft_save_img(state, file);
+	ft_save_color(state, file);
+}
+
 void	ft_is_map_close(t_state *state, char c, size_t y, size_t x)
 {
 	char	**map;
@@ -136,14 +192,11 @@ void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
 	(void)x;
 	(void)y;
 	(void)c;
-	if (c == 'N')
-		state->map.n_no++;
-	if (c == 'S')
-		state->map.n_so++;
-	if (c == 'W')
-		state->map.n_we++;
-	if (c == 'E')
-		state->map.n_ea++;
+	if (state->map.direccion != '\0' &&  (c == 'N' || c == 'S' || c == 'W' || c == 'E'))
+		ft_error_print("Error no Map valid, repeat USER 🤯", state);
+
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		state->map.direccion = c;
 }
 
 void	ft_map_validity(t_state *state, void (*f)(t_state *, char, size_t,
@@ -173,20 +226,5 @@ int	ft_check_map(t_state *state)
 	state->map.n_ea = 0;
 	ft_map_validity(state, ft_is_map_close);
 	ft_map_validity(state, ft_is_map_repeat);
-	if (state->map.n_ea > 1 || state->map.n_so > 1 || state->map.n_we > 1
-		|| state->map.n_no > 1)
-		ft_error_print("Error no Map valid, repeat USER 🤯", state);
-	if (state->map.n_ea == 0 && state->map.n_so == 0 && state->map.n_we == 0
-		&& state->map.n_no == 0)
-		ft_error_print("Error no Map valid, repeat USER 🤯", state);
-
-	if (state->map.n_ea == 1 && (state->map.n_so != 0 || state->map.n_we != 0 || state->map.n_no != 0))
-		ft_error_print("Error no Map valid, repeat USER 🤯", state);
-	if (state->map.n_so == 1 && ( state->map.n_ea != 0 || state->map.n_we != 0 || state->map.n_no != 0))
-		ft_error_print("Error no Map valid, repeat USER 🤯", state);
-	if (state->map.n_we == 1 && (state->map.n_no != 0 || state->map.n_ea != 0 || state->map.n_so != 0  ))
-		ft_error_print("Error no Map valid, repeat USER 🤯", state);
-	if ( state->map.n_no == 1 && (state->map.n_ea != 0 || state->map.n_so != 0 || state->map.n_we != 0))
-		ft_error_print("Error no Map valid, repeat USER 🤯", state);
 	return (TRUE);
 }
