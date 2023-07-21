@@ -6,70 +6,54 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/19 16:06:10 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/07/21 16:08:45 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 # Program
 NAME = cub3D
+S_DIR	=	src
+S_OBJ	=	bin
 
-CC		=	gcc
-CFLAGS	=	-g -Wall -Werror -Wextra -I. -I./$(INCDIR)
-RM		=	rm -f
-RM_F		=	rm -rf
+SUBDIRS		= game \
+						parsing \
+						raycasting \
+						utils
 
-# Includes are all .h files
-INCDIR	=	libs/
-INC		=	libs/cub.h
-MLX		= ${HOME}/.brew/lib/
+SRCS = src/main.c src/parsing/ft_check_file.c src/parsing/save_data.c src/utils/Error.c src/utils/str_1.c
+
+OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
+
+OBJS		= $(subst $(S_DIR), $(S_OBJ), $(SRCS:.c=.o))
+
+
+CC = gcc
+CFLAGS =  -g -Wall -Wextra -Werror
+RM = rm -fr
+LIBFT = ./libs/libft/libft.a
 LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-#-framework Cocoa -framework OpenGL -framework IOKit
 
-# Sources are all .c files
-SRCDIR	=	src/
-SRCS =	src/main.c src/Error.c src/ft_check_file.c src/save_data.c src/str_1.c
+$(S_OBJ)/%.o:$(S_DIR)/%.c
+	@mkdir -p $(S_OBJ) $(OBJS_DIRS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-# Objects are all .o files
-OBJDIR	=	bin/
-OBJS	=	$(patsubst $(SRCDIR)%.c,$(OBJDIR)%.o,$(SRCS))
-
-# libf
-LIBFT = libft.a
-D_LIBFT = libs/libft/
-
-# ////////////////// TARGETS
-
-# all: $(NAME)
-all: do_libft $(NAME)
-
-# Generates output file
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $(OBJS) ${LIB_MLX} $(D_LIBFT)$(LIBFT)
+	@$(MAKE) all -C ./libs/libft
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT) $(LIB_MLX)
+# @$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIBFT)
 
-# Compiles sources into objects
-$(OBJS): $(OBJDIR)%.o : $(SRCDIR)%.c $(INC) | $(OBJDIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(S_OBJ):
+	@mkdir -p $(S_OBJ)
 
-# Creates directory for binaries
-$(OBJDIR):
-	mkdir -p $@
+all: $(NAME)
 
-# Removes objects
 clean:
-	@$(RM_F) $(OBJDIR)
-	@$(MAKE) --no-print-directory -C $(D_LIBFT) clean
+	@$(RM) $(OFIX) $(S_OBJ)
 
-# Removes objects and executables
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE) --no-print-directory -C $(D_LIBFT) fclean
+	@$(MAKE) fclean -C ./libs/libft
 
-# Removes objects and executables and remakes
 re: fclean all
 
-# libf
-do_libft:
-	@$(MAKE) -C $(D_LIBFT)
-# libf
-.PHONY:		all clean fclean re header
+.PHONY: all clean fclean re

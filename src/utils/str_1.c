@@ -6,11 +6,11 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:11:50 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/14 19:11:33 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:03:37 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libs/cub.h"
+#include "../../libs/cub.h"
 
 char	*ft_cut_space(char *str, size_t start)
 {
