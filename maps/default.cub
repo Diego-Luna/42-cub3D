@@ -1,10 +1,10 @@
-WE ./maps/texture/path_to_the_north_texture
-SO ./maps/texture/path_to_the_north_texture
-NO ./maps/texture/path_to_the_north_texture
-EA ./maps/texture/path_to_the_north_texture
+WE ./assets/beach.png
+SO ./assets/cofee.png
+NO ./assets/computer.png
+EA ./assets/skay.png
 
-C 0,0,0
-F 225,30,0
+C 0,15,80
+F 150,150,150
 
 1111111111111111111111111
 100001000110000000000001

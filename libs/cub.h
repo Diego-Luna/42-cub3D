@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/20 19:23:01 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:25:18 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,15 @@
 
 #define WIDTH 512
 #define HEIGHT 512
+#define BPP sizeof(int32_t)
+
 
 typedef struct s_map
 {
 	char	*path_no;
-	int	n_no;
 	char	*path_so;
-	int	n_so;
 	char	*path_we;
-	int	n_we;
 	char	*path_ea;
-	int	n_ea;
 	char direccion;
 	char	**map;
 	int		start_map;
@@ -47,9 +45,17 @@ typedef struct s_map
 	size_t		width;
 }		t_map;
 
+typedef struct s_game
+{
+	int width;
+	int height;
+	mlx_t* mlx;
+}		t_game;
+
 typedef struct s_state
 {
 	t_map map;
+	t_game game;
 }			t_state;
 
 // check file
@@ -73,5 +79,8 @@ int			ft_str_equals(char *str_1, char *str_2);
 char		*ft_cut_word(char *str, char cut, int number);
 int			ft_count_words(char *str, char cut);
 int			ft_str_is_number(char *str);
+
+// Game
+void ft_init_game(t_state *state);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/20 19:06:17 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:10:50 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,10 +220,6 @@ void	ft_map_validity(t_state *state, void (*f)(t_state *, char, size_t,
 
 int	ft_check_map(t_state *state)
 {
-	state->map.n_no = 0;
-	state->map.n_so = 0;
-	state->map.n_we = 0;
-	state->map.n_ea = 0;
 	ft_map_validity(state, ft_is_map_close);
 	ft_map_validity(state, ft_is_map_repeat);
 	return (TRUE);

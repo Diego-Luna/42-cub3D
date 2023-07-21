@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/21 16:08:45 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/07/21 18:09:59 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SUBDIRS		= game \
 						raycasting \
 						utils
 
-SRCS = src/main.c src/parsing/ft_check_file.c src/parsing/save_data.c src/utils/Error.c src/utils/str_1.c
+SRCS = src/main.c src/parsing/ft_check_file.c src/parsing/save_data.c src/utils/Error.c src/utils/str_1.c src/game/game.c
 
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
 
