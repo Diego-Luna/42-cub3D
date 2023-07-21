@@ -6,14 +6,14 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/20 19:35:15 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/07/21 16:08:45 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Program
 NAME = cub3D
-S_DIR	=	srcs
-S_OBJ	=	objs
+S_DIR	=	src
+S_OBJ	=	bin
 
 SUBDIRS		= game \
 						parsing \
@@ -36,7 +36,6 @@ LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/
 $(S_OBJ)/%.o:$(S_DIR)/%.c
 	@mkdir -p $(S_OBJ) $(OBJS_DIRS)
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "\033[92m.\033[0m\c"
 
 $(NAME): $(OBJS)
 	@$(MAKE) all -C ./libs/libft
@@ -50,18 +49,11 @@ all: $(NAME)
 
 clean:
 	@$(RM) $(OFIX) $(S_OBJ)
-	@echo "🧹"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) fclean -C ./libs/libft
 
 re: fclean all
-
-do_libft:
-	@$(MAKE) -C $(D_LIBFT)
-
-do_readline:
-	@$(MAKE) -C $(D_LIBFT)
 
 .PHONY: all clean fclean re
