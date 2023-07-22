@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:12:20 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/20 19:06:17 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:56:47 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_free_state(t_state *state)
 	ft_free(state->map.path_no);
 	ft_free(state->map.path_so);
 	ft_free(state->map.path_we);
-	ft_free(state->map.f_color);
-	ft_free(state->map.c_color);
+	ft_free(state->map.f_color.s_color);
+	ft_free(state->map.c_color.s_color);
 	ft_free_table(state->map.map);
 }

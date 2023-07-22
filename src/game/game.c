@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/21 19:31:36 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:53:17 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void ft_change_full_color(mlx_image_t* image, int r, int g, int b)
 void ft_init_game(t_state *state)
 {
     t_game *game = &state->game;
-    t_map *map = &state->map;
+    // t_map *map = &state->map;
 
     game->height = 1000;
     game->width = 1000;
@@ -47,27 +47,49 @@ void ft_init_game(t_state *state)
     // Initialize the mlx environment
     game->mlx =  mlx_init(game->width, game->height, "CUB3D", TRUE);
     if (!game->mlx)
-			ft_error_print("Error displaying the image", state);
+		ft_error_print("Error displaying the image", state);
+}
 
-    mlx_image_t* sky = mlx_new_image(game->mlx, game->width,  game->height  / 2);
-    ft_change_full_color(sky, ft_atoi(ft_cut_word(map->c_color, ',', 1)), ft_atoi(ft_cut_word(map->c_color, ',', 2)), ft_atoi(ft_cut_word(map->c_color, ',', 3)));
+void ft_creat_frams(t_state *state)
+{
+    t_game *game = &state->game;
+    t_map *map = &state->map;
 
-		mlx_image_t* floor = mlx_new_image(game->mlx, game->width, game->height  / 2);
-    ft_change_full_color(floor, ft_atoi(ft_cut_word(map->f_color, ',', 1)), ft_atoi(ft_cut_word(map->f_color, ',', 2)), ft_atoi(ft_cut_word(map->f_color, ',', 3)));
+    // mlx_image_t* sky = mlx_new_image(game->mlx, game->width, game->height  / 2);
+    game->sky = mlx_new_image(game->mlx, game->width, game->height  / 2);
+    ft_change_full_color(game->sky, map->c_color.r, map->c_color.g, map->c_color.b);
+
+	// mlx_image_t* floor = mlx_new_image(game->mlx, game->width, game->height  / 2);
+	game->floor = mlx_new_image(game->mlx, game->width, game->height  / 2);
+    ft_change_full_color(game->floor, map->f_color.r, map->f_color.g, map->f_color.b);
 
     // Draw the image to the window
-    if (mlx_image_to_window(game->mlx, sky, 0, 0) == -1)
-			ft_error_print("Error displaying the image", state);
-    if (mlx_image_to_window(game->mlx, floor, 0, game->height / 2 ) == -1)
-			ft_error_print("Error displaying the image", state);
+    if (mlx_image_to_window(game->mlx, game->sky, 0, 0) == -1)
+        ft_error_print("Error displaying the image", state);
+    if (mlx_image_to_window(game->mlx, game->floor, 0, game->height / 2 ) == -1)
+        ft_error_print("Error displaying the image", state);
+}
 
-    // Run the main loop and terminate on quit.
-    mlx_loop(game->mlx);
-    mlx_terminate(game->mlx);
+void ft_clone_game(t_state *state)
+{
+    mlx_terminate(state->game.mlx);
+}
+
+void ft_free_game(t_state *state)
+{
+
+}
+
+void ft_run_game(t_state *state)
+{
+    ft_init_game(state);
+    ft_creat_frams(state);
+    mlx_loop(state->game.mlx);
+    ft_clone_game(state);
 }
 
 // run game
-// 	ini 
+// 	ini
 // 	hooks
 // 	crea_frams
 // 	free

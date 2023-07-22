@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/21 18:10:50 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/22 14:03:08 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,24 @@ void	ft_save_map(t_state *state, char *file)
 	close(fd);
 }
 
+void	ft_save_color_in_structur(t_color *color, char *str){
+	char *r;
+	char *g;
+	char *b;
+
+	r = ft_cut_word(str, ',', 1);
+	g = ft_cut_word(str, ',', 2);
+	b = ft_cut_word(str, ',', 3);
+	color->r = ft_atoi(r);
+	color->g = ft_atoi(g);
+	color->b = ft_atoi(b);
+	color->a = 255;
+	color->s_color = str;
+	ft_free(r);
+	ft_free(g);
+	ft_free(b);
+}
+
 void	ft_save_color(t_state *state, char *file){
 	int fd;
 	char	*line;
@@ -124,10 +142,12 @@ void	ft_save_color(t_state *state, char *file){
 	{
 		cut = ft_cut_space(line, 0);
 		if (ft_str_equals(cut, "F") == TRUE){
-			state->map.f_color =  ft_cut_word(line, ' ', 2);
+			// state->map.f_color =  ft_cut_word(line, ' ', 2);
+			ft_save_color_in_structur(&state->map.f_color, ft_cut_word(line, ' ', 2));
 		}
 		else if (ft_str_equals(cut, "C") == TRUE){
-			state->map.c_color =  ft_cut_word(line, ' ', 2);
+			// state->map.c_color =  ft_cut_word(line, ' ', 2);
+			ft_save_color_in_structur(&state->map.c_color, ft_cut_word(line, ' ', 2));
 		}
 		cut = ft_free(cut);
 		line = ft_free(line);

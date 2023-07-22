@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/21 19:25:18 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:41:25 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 #define HEIGHT 512
 #define BPP sizeof(int32_t)
 
+typedef struct s_color{
+	char *s_color;
+	int r;
+	int g;
+	int b;
+	int a;
+} t_color;
 
 typedef struct s_map
 {
@@ -39,8 +46,8 @@ typedef struct s_map
 	char	**map;
 	int		start_map;
 	int		end_map;
-	char * f_color;
-	char * c_color;
+	t_color f_color;
+	t_color c_color;
 	size_t		height;
 	size_t		width;
 }		t_map;
@@ -50,6 +57,8 @@ typedef struct s_game
 	int width;
 	int height;
 	mlx_t* mlx;
+	mlx_image_t *sky;
+	mlx_image_t *floor;
 }		t_game;
 
 typedef struct s_state
@@ -81,6 +90,7 @@ int			ft_count_words(char *str, char cut);
 int			ft_str_is_number(char *str);
 
 // Game
+void ft_run_game(t_state *state);
 void ft_init_game(t_state *state);
 
 #endif

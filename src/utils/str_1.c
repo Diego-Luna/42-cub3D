@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   str_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:11:50 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/20 19:03:37 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/22 13:23:23 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,17 @@ int	ft_str_equals(char *str_1, char *str_2)
 	return (TRUE);
 }
 
-void	ft_cut_word_utils_1(size_t *start, size_t i, size_t *end)
-{
-	start = &i;
-	end = 0;
-}
+// void	ft_cut_word_utils_1(size_t *start, size_t i, size_t *end)
+// {
+// 	start = &i;
+// 	end = 0;
+// }
 
-void	ft_cut_word_utils_2(int *nu, size_t i, size_t *end)
-{
-	end = &i;
-	nu--;
-}
+// void	ft_cut_word_utils_2(int *nu, size_t i, size_t *end)
+// {
+// 	end = &i;
+// 	nu--;
+// }
 
 char	*ft_cut_word(char *str, char cut, int number)
 {

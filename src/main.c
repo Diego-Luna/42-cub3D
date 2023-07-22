@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/21 19:14:44 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/22 15:51:01 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void		ft_print_map(t_state *state){
 	printf("\n\n --> Path <--");
 
 	printf("\n\n --> Color <--");
-	printf("\n -> COLOR C {%s}", state->map.c_color);
-	printf("\n -> COLOR F {%s}", state->map.f_color);
+	printf("\n -> COLOR C {%s}", state->map.c_color.s_color);
+	printf("\n -> COLOR F {%s}", state->map.f_color.s_color);
 	printf("\n --> Color <--\n\n");
 }
 
@@ -42,8 +42,10 @@ void	ft_init_map(t_state *state)
 	state->map.path_so = NULL;
 	state->map.path_we = NULL;
 	state->map.path_ea = NULL;
-	state->map.f_color = NULL;
-	state->map.c_color = NULL;
+	state->game.sky = NULL;
+	state->game.floor = NULL;
+	state->map.f_color.s_color = NULL;
+	state->map.c_color.s_color = NULL;
 	state->map.direccion = '\0';
 	state->map.map = NULL;
 }
@@ -52,13 +54,15 @@ int32_t	main(int argc, char *argv[])
 {
 	t_state	state;
 
+	(void) argc;
+	(void) argv;
 	ft_init_map(&state);
 	if (argc != 2 || !ft_check_file(argv[1], &state))
 		ft_error_print("error in file ", &state);
 	ft_save_data(&state, argv[1]);
 	ft_check_map(&state);
 	ft_print_map(&state);
-	ft_init_game(&state);
+	ft_run_game(&state);
 	printf("\n🤟 run 🤟\n");
 	ft_free_state(&state);
 	return (0);
