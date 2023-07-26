@@ -6,7 +6,7 @@
 #    By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/22 13:40:22 by diegofranci      ###   ########.fr        #
+#    Updated: 2023/07/25 21:09:05 by diegofranci      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ SUBDIRS		= game \
 						raycasting \
 						utils
 
-SRCS = src/main.c src/parsing/ft_check_file.c src/parsing/save_data.c src/utils/Error.c src/utils/str_1.c src/game/game.c
+SRCS = src/main.c src/parsing/ft_check_file.c src/parsing/save_data.c \
+				src/utils/Error.c src/utils/str_1.c src/game/game.c \
+				src/raycasting/raycasting.c
 
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
 
@@ -28,7 +30,8 @@ OBJS		= $(subst $(S_DIR), $(S_OBJ), $(SRCS:.c=.o))
 
 
 CC = gcc
-CFLAGS =  -g -Wall -Wextra -Werror
+# CFLAGS =  -g -Wall -Wextra -Werror
+CFLAGS =  -g
 RM = rm -fr
 LIBFT = ./libs/libft/libft.a
 # LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"

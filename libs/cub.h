@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/22 15:41:25 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/25 21:27:10 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdbool.h>
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
+# include <math.h>
+
 
 # define FALSE 0
 # define TRUE 1
@@ -28,6 +30,14 @@
 #define HEIGHT 512
 #define BPP sizeof(int32_t)
 
+#define DIRECCION_NO 0
+#define DIRECCION_WE 90
+#define DIRECCION_SO 180
+#define DIRECCION_EA 270
+
+#define WINDOW_W 1000
+#define WINDOW_H 1000
+
 typedef struct s_color{
 	char *s_color;
 	int r;
@@ -35,6 +45,25 @@ typedef struct s_color{
 	int b;
 	int a;
 } t_color;
+
+typedef struct s_player{
+	double x;
+	double y;
+	double angle;
+} t_player;
+
+typedef struct s_raycasting{
+	double dirX; //initial direction vector
+	double dirY; //initial direction vector
+	double planeX; //the 2d raycaster version of camera plane
+	double planeY; //the 2d raycaster version of camera plane
+	double time; //time of current frame
+	double oldTime; //time of previous frame
+
+	double cameraX; //x-coordinate in camera space
+	double rayDirX; //direction of ray on x-axis
+	double rayDirY; //direction of ray on y-axis
+} t_raycasting;
 
 typedef struct s_map
 {
@@ -64,7 +93,9 @@ typedef struct s_game
 typedef struct s_state
 {
 	t_map map;
+	t_player player;
 	t_game game;
+	t_raycasting ray;
 }			t_state;
 
 // check file
@@ -92,5 +123,10 @@ int			ft_str_is_number(char *str);
 // Game
 void ft_run_game(t_state *state);
 void ft_init_game(t_state *state);
+int get_rgba(int r, int g, int b, int a);
+
+// raycasting
+void  ft_raycasting(t_state *state);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/22 15:51:01 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/25 21:23:18 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ void	ft_init_map(t_state *state)
 	state->map.c_color.s_color = NULL;
 	state->map.direccion = '\0';
 	state->map.map = NULL;
+
+	state->ray.dirY = 0;
+	state->ray.dirY = 0;
+	state->ray.planeX = 0;
+	state->ray.planeY = 0.66;
+	state->ray.time = 0;
+	state->ray.oldTime = 0;
 }
 
 int32_t	main(int argc, char *argv[])

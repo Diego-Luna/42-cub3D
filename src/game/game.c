@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/22 15:53:17 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/25 21:27:28 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void ft_init_game(t_state *state)
     game->width = 1000;
 
     // Initialize the mlx environment
-    game->mlx =  mlx_init(game->width, game->height, "CUB3D", TRUE);
+    // game->mlx =  mlx_init(game->width,  game->height, "CUB3D", TRUE);
+    game->mlx =  mlx_init(WINDOW_W,  WINDOW_H, "CUB3D", TRUE);
     if (!game->mlx)
 		ft_error_print("Error displaying the image", state);
 }
@@ -75,15 +76,16 @@ void ft_clone_game(t_state *state)
     mlx_terminate(state->game.mlx);
 }
 
-void ft_free_game(t_state *state)
-{
+// void ft_free_game(t_state *state)
+// {
 
-}
+// }
 
 void ft_run_game(t_state *state)
 {
     ft_init_game(state);
-    ft_creat_frams(state);
+    // ft_creat_frams(state);
+    ft_raycasting(state);
     mlx_loop(state->game.mlx);
     ft_clone_game(state);
 }

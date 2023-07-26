@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/22 14:03:08 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/24 20:34:11 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,14 +209,24 @@ void	ft_is_map_close(t_state *state, char c, size_t y, size_t x)
 
 void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
 {
-	(void)x;
-	(void)y;
 	(void)c;
 	if (state->map.direccion != '\0' &&  (c == 'N' || c == 'S' || c == 'W' || c == 'E'))
 		ft_error_print("Error no Map valid, repeat USER 🤯", state);
 
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+	{
 		state->map.direccion = c;
+		state->player.x = (double)x;
+		state->player.y = (double)y;
+		if (c == 'N')
+			state->player.angle = DIRECCION_NO;
+		if (c == 'W')
+			state->player.angle = DIRECCION_WE;
+		if (c == 'S')
+			state->player.angle = DIRECCION_SO;
+		if (c == 'E')
+			state->player.angle = DIRECCION_EA;
+	}
 }
 
 void	ft_map_validity(t_state *state, void (*f)(t_state *, char, size_t,
