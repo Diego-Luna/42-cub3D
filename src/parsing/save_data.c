@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/26 17:10:21 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:29:09 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ char	*ft_clean_last(char *str, t_state *state)
 
 	i = 0;
 	ii = 0;
-	new = ft_calloc(sizeof(char), ft_strlen(str));
+	new = ft_calloc(sizeof(char), state->map.width);
+	// new = ft_calloc(sizeof(char), ft_strlen(str));
 	if (!new)
 		ft_error_print("error in malloc", state);
 	while (str[i])

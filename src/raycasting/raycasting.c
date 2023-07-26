@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/07/26 17:14:06 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:24:32 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,27 @@ void  ft_raycasting(t_state *state)
     }
 
     //perform DDA
+    // while (hit == 0)
+    // {
+    //   //jump to next map square, either in x-direction, or in y-direction
+    //   if (sideDistX < sideDistY)
+    //   {
+    //     sideDistX += deltaDistX;
+    //     mapX += stepX;
+    //     side = 0;
+    //   }
+    //   else
+    //   {
+    //     sideDistY += deltaDistY;
+    //     mapY += stepY;
+    //     side = 1;
+    //   }
+    //   //Check if ray has hit a wall
+    //   if (mapY < (int)WINDOW_H && mapX < ft_strlen(state->map.map[mapY]))
+    //   {
+    //     if (state->map.map[mapY][mapX] > '1') hit = 1;
+    //   }
+    // }
     while (hit == 0)
     {
       //jump to next map square, either in x-direction, or in y-direction
@@ -107,12 +128,8 @@ void  ft_raycasting(t_state *state)
         side = 1;
       }
       //Check if ray has hit a wall
-      if (mapY < (int)WINDOW_H && mapX < ft_strlen(state->map.map[mapY]))
-      {
-        // if (state->map.map[mapY][mapX] > 0) hit = 1;
-        if (state->map.map[mapY][mapX] == '1') hit = 1;
-      }
-    }
+      if (state->map.map[mapY][mapX] == '1') hit = 1;
+    } 
 
     // //Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
     if(side == 0) perpWallDist = (sideDistX - deltaDistX);

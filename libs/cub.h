@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/26 13:03:36 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/26 19:38:18 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int			ft_check_file(char *file, t_state *state);
 int			ft_check_path(char *file);
 int		ft_is_map(char *str);
 int 	ft_check_map(t_state *state);
+void	ft_map_validity(t_state *state, void (*f)(t_state *, char, size_t,
+			size_t));
 
 // Save data
 void		ft_save_data(t_state *state, char *file);

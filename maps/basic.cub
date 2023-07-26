@@ -1,0 +1,16 @@
+WE ./assets/beach.png
+SO ./assets/cofee.png
+NO ./assets/computer.png
+EA ./assets/skay.png
+
+C 0,15,80
+F 150,150,150
+
+11111111
+10010001
+10010001
+100N0001
+10000001
+10000001
+10000001
+11111111
