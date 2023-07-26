@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+         #
+#    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/07/25 21:09:05 by diegofranci      ###   ########.fr        #
+#    Updated: 2023/07/26 16:18:11 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,12 @@ OBJS		= $(subst $(S_DIR), $(S_OBJ), $(SRCS:.c=.o))
 
 
 CC = gcc
-# CFLAGS =  -g -Wall -Wextra -Werror
-CFLAGS =  -g
+CFLAGS =  -g -Wall -Wextra -Werror
+# CFLAGS =  -g
 RM = rm -fr
 LIBFT = ./libs/libft/libft.a
-# LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
-LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/opt/homebrew/opt/glfw/lib/"
+LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+# LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/opt/homebrew/opt/glfw/lib/"
 
 $(S_OBJ)/%.o:$(S_DIR)/%.c
 	@mkdir -p $(S_OBJ) $(OBJS_DIRS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/26 13:03:31 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/26 18:41:56 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ int32_t	main(int argc, char *argv[])
 {
 	t_state	state;
 
-	(void) argc;
-	(void) argv;
 	ft_init_map(&state);
 	if (argc != 2 || !ft_check_file(argv[1], &state))
 		ft_error_print("error in file ", &state);
