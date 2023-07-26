@@ -6,25 +6,37 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/07/26 08:32:48 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/26 13:11:31 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libs/cub.h"
 
-void mlx_verLine(mlx_image_t *img, int x, int drawStart, int drawEnd, int color)
+void mlx_verLine(mlx_image_t *img, uint32_t x, uint32_t drawStart, uint32_t drawEnd, uint32_t color)
 {
-  for (int y = drawStart; y <= drawEnd; y++){
+  uint32_t y;
+
+  y = drawStart;
+  while (y <= drawEnd)
+  {
     mlx_put_pixel(img, x, y, color);
+    y++;
   }
+  // for (int y = drawStart; y <= drawEnd; y++){
+    // mlx_put_pixel(img, x, y, color);
+  // }
 }
 
 void  ft_raycasting(t_state *state)
 {
-  int x;
+  // int x;
+  uint32_t x;
 
   x = 0;
-  mlx_image_t *g_img = mlx_new_image(state->game.mlx, WINDOW_W, WINDOW_H);
+  if (state->ray.g_img){
+    mlx_delete_image(state->game.mlx, state->ray.g_img);
+  }
+  state->ray.g_img = mlx_new_image(state->game.mlx, WINDOW_W, WINDOW_H);
   while (x < (int)WINDOW_W)
   {
     //calculate ray position and direction
@@ -90,10 +102,11 @@ void  ft_raycasting(t_state *state)
         side = 1;
       }
       //Check if ray has hit a wall
-      if (mapY < (int)WINDOW_H && mapX < (int)WINDOW_W)
-      {
-        if (state->map.map[mapY][mapX] > 0) hit = 1;
-      }
+      // if (mapY < (int)WINDOW_H && mapX < (int)WINDOW_W)
+      // {
+        // if (state->map.map[mapY][mapX] > 0) hit = 1;
+        if (state->map.map[mapY][mapX] == 1) hit = 1;
+      // }
     }
 
     // //Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
@@ -103,16 +116,19 @@ void  ft_raycasting(t_state *state)
     //Calculate height of line to draw on screen
     int lineHeight = (int)(WINDOW_H / perpWallDist);
     //calculate lowest and highest pixel to fill in current stripe
-    int drawStart = -lineHeight / 2 + WINDOW_H / 2;
+    // int drawStart = -lineHeight / 2 + WINDOW_H / 2;
+    uint32_t drawStart = -lineHeight / 2 + WINDOW_H / 2;
     if(drawStart < 0)drawStart = 0;
-    int drawEnd = lineHeight / 2 + WINDOW_H / 2;
+    // int drawEnd = lineHeight / 2 + WINDOW_H / 2;
+    uint32_t drawEnd = lineHeight / 2 + WINDOW_H / 2;
     if(drawEnd >= (int)WINDOW_H)drawEnd = WINDOW_H - 1;
 
     // choose wall color
-    mlx_verLine(g_img, x, drawStart, drawEnd, get_rgba(255, 255, 0, 255));
+    mlx_verLine(state->ray.g_img, x, drawStart, drawEnd, get_rgba(255, 255, 0, 255));
     x++;
   }
-  mlx_image_to_window(state->game.mlx, g_img, 0, 0);
+  printf("\n raycasting");
+  mlx_image_to_window(state->game.mlx, state->ray.g_img, 0, 0);
 }
 // void  ft_raycasting(t_state *state)
 // {

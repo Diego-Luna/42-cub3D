@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/25 21:27:28 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/26 13:08:17 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,53 @@ void ft_clone_game(t_state *state)
     mlx_terminate(state->game.mlx);
 }
 
-// void ft_free_game(t_state *state)
-// {
+void ft_rendering(void* param)
+{
+    t_state *state;
 
-// }
+    state = param;
+	// ft_raycasting(state);
+}
+
+void my_keyhook(mlx_key_data_t keydata, void* param)
+{
+    t_state *state;
+
+    state = param;
+	// If we PRESS the 'J' key, print "Hello".
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+    {
+        if ((int)state->player.y + 1 < (int)state->map.height)
+            state->player.y += 1;
+        ft_raycasting(state);
+    }
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+    {
+        if ((int)state->player.y - 1 > 0)
+            state->player.y -= 1;
+        ft_raycasting(state);
+    }
+	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+    {
+        if ((int)state->player.x + 1 < (int)state->map.width)
+            state->player.x += 1;
+        ft_raycasting(state);
+    }
+	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+    {
+        if ((int)state->player.x - 1 > 0)
+            state->player.x -= 1;
+        ft_raycasting(state);
+    }
+}
 
 void ft_run_game(t_state *state)
 {
     ft_init_game(state);
-    // ft_creat_frams(state);
-    ft_raycasting(state);
+    ft_creat_frams(state);
+    // ft_raycasting(state);
+    // mlx_loop_hook(state->game.mlx, &ft_rendering, state);
+    mlx_key_hook(state->game.mlx, &my_keyhook, state);
     mlx_loop(state->game.mlx);
     ft_clone_game(state);
 }

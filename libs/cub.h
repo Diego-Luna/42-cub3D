@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/25 21:27:10 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/26 13:03:36 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_raycasting{
 	double cameraX; //x-coordinate in camera space
 	double rayDirX; //direction of ray on x-axis
 	double rayDirY; //direction of ray on y-axis
+	mlx_image_t *g_img;
 } t_raycasting;
 
 typedef struct s_map
