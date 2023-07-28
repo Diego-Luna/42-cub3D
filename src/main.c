@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/26 18:41:56 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/27 18:47:35 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_init_map(t_state *state)
 	state->map.map = NULL;
 
 	state->ray.dirY = 0;
-	state->ray.dirY = 0;
+	state->ray.dirX = 1;
 	state->ray.planeX = 0;
 	state->ray.planeY = 0.66;
 	state->ray.time = 0;
