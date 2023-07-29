@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/27 18:50:59 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/29 11:37:18 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void ft_init_game(t_state *state)
     game->mlx =  mlx_init(WINDOW_W,  WINDOW_H, "CUB3D", TRUE);
     if (!game->mlx)
 		ft_error_print("Error displaying the image", state);
-		ft_completa_map(state);
-		ft_print_map(state);
+    ft_completa_map(state);
+	ft_print_map(state);
 }
 
 void ft_creat_frams(t_state *state)
@@ -111,36 +111,129 @@ void ft_rendering(void* param)
 
 void my_keyhook(mlx_key_data_t keydata, void* param)
 {
+    // double rotSpeed = 10 * 3.0;
     t_state *state;
+    double rotSpeed = 0.5;
+    double movent = 0.5;
 
     state = param;
-    printf("\n Click player x{%f} max X{%zu} y{%f} max Y{%zu}", state->player.x, state->map.width, state->player.y, state->map.height);
+	printf("\n->🤖🤖🤖 left state->ray.planeX{%f} state->ray.planeY{%f}", state->ray.planeX, state->ray.planeY);
+
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS && state->player.x + 1 < state->map.width)
   {
-    state->player.x += 1;
-		printf("\n --> MLX_KEY_W state->player.x{%f} ", state->player.x);
-    // ft_raycasting(state);
+		if (state->ray.planeY > 0.356600 && state->ray.planeY <= 0.66 &&
+        state->ray.planeX <= 0.555371 && state->ray.planeX >= -0.555371)
+		{
+      printf("\n -> W 1");
+      state->player.x += movent;
+    } else if ((state->ray.planeY >= 0.045 || state->ray.planeY <= -0.274657 || state->ray.planeY <= -0.096030 )
+      && (state->ray.planeX >= 0.356600 || state->ray.planeX == 0.394992))
+		{
+      printf("\n -> W 2");
+      state->player.y -= movent;
+    }else if ((state->ray.planeY <= -0.528751 )
+      && (state->ray.planeX >= 0.091))
+    {
+      printf("\n -> W 3");
+      state->player.x -= movent;
+    }else if ((state->ray.planeY < 0 || state->ray.planeY == 0.187217 || state->ray.planeY == 0.467722)
+      && (state->ray.planeX < 0))
+    {
+      printf("\n -> W 4");
+      state->player.y += movent;
+    }
   }
 	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS && state->player.x - 1 >= 0)
   {
-    // if (state->player.x - 1 >= 0)
-		state->player.x -= 1;
-		printf("\n --> MLX_KEY_S state->player.x{%f} ", state->player.x);
-    // ft_raycasting(state);
+
+    if (state->ray.planeY > 0.356600 && state->ray.planeY <= 0.66 &&
+        state->ray.planeX <= 0.555371 && state->ray.planeX >= -0.555371)
+		{
+      printf("\n -> S 1");
+      state->player.x -= movent;
+    } else if ((state->ray.planeY >= 0.045 || state->ray.planeY <= -0.274657 || state->ray.planeY <= -0.096030 )
+      && (state->ray.planeX >= 0.356600 || state->ray.planeX == 0.394992))
+		{
+      printf("\n -> S 2");
+      state->player.y += movent;
+    }else if ((state->ray.planeY <= -0.528751 )
+      && (state->ray.planeX >= 0.091))
+    {
+      printf("\n -> S 3");
+      state->player.x += movent;
+    }else if ((state->ray.planeY < 0 || state->ray.planeY == 0.187217 || state->ray.planeY == 0.467722)
+      && (state->ray.planeX < 0))
+    {
+      printf("\n -> S 4");
+      state->player.y -= movent;
+    }
   }
-	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS && state->player.y + 1 < state->map.height)
+  if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS && state->player.y + 1 < state->map.height)
   {
-		// if (state->player.y + 1 < state->map.height)
-		state->player.y += 1;
-		printf("\n --> MLX_KEY_D state->player.y{%f} ", state->player.y);
-  	// ft_raycasting(state);
+		if (state->ray.planeY > 0.356600 && state->ray.planeY <= 0.66 &&
+        state->ray.planeX <= 0.555371 && state->ray.planeX >= -0.555371)
+		{
+      printf("\n -> D 1");
+      state->player.y += movent;
+    } else if ((state->ray.planeY >= 0.045 || state->ray.planeY <= -0.274657 || state->ray.planeY <= -0.096030 )
+      && (state->ray.planeX >= 0.356600 || state->ray.planeX == 0.394992))
+		{
+      printf("\n -> D 2");
+      state->player.x += movent;
+    }else if ((state->ray.planeY <= -0.528751 )
+      && (state->ray.planeX >= 0.091))
+    {
+      printf("\n -> D 3");
+      state->player.y -= movent;
+    }else if ((state->ray.planeY < 0 || state->ray.planeY == 0.187217 || state->ray.planeY == 0.467722)
+      && (state->ray.planeX < 0))
+    {
+      printf("\n -> D 4");
+      state->player.x -= movent;
+    }
   }
 	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS && state->player.y - 1 >= 0)
   {
-		// if (state->player.y - 1 >= 0)
-		state->player.y -= 1;
-		printf("\n --> MLX_KEY_A state->player.y{%f} ", state->player.y);
-		// ft_raycasting(state);
+		if (state->ray.planeY > 0.356600 && state->ray.planeY <= 0.66 &&
+        state->ray.planeX <= 0.555371 && state->ray.planeX >= -0.555371)
+		{
+      printf("\n -> D 1");
+      state->player.y -= movent;
+    } else if ((state->ray.planeY >= 0.045 || state->ray.planeY <= -0.274657 || state->ray.planeY <= -0.096030 )
+      && (state->ray.planeX >= 0.356600 || state->ray.planeX == 0.394992))
+		{
+      printf("\n -> D 2");
+      state->player.x -= movent;
+    }else if ((state->ray.planeY <= -0.528751 )
+      && (state->ray.planeX >= 0.091))
+    {
+      printf("\n -> D 3");
+      state->player.y += movent;
+    }else if ((state->ray.planeY < 0 || state->ray.planeY == 0.187217 || state->ray.planeY == 0.467722)
+      && (state->ray.planeX < 0))
+    {
+      printf("\n -> D 4");
+      state->player.x += movent;
+    }
+  }
+
+  if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS){
+    double oldDirX = state->ray.dirX;
+    state->ray.dirX = state->ray.dirX * cos(-rotSpeed) - state->ray.dirY * sin(-rotSpeed);
+    state->ray.dirY = oldDirX * sin(-rotSpeed) + state->ray.dirY * cos(-rotSpeed);
+    double oldPlaneX = state->ray.planeX;
+    state->ray.planeX = state->ray.planeX * cos(-rotSpeed) - state->ray.planeY * sin(-rotSpeed);
+    state->ray.planeY = oldPlaneX * sin(-rotSpeed) + state->ray.planeY * cos(-rotSpeed);
+    // printf("\n-> 🤖 left state->ray.planeX{%f} state->ray.planeY{%f}", state->ray.planeX, state->ray.planeY);
+  }
+  if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS){
+    double oldDirX = state->ray.dirX;
+    state->ray.dirX = state->ray.dirX * cos(rotSpeed) - state->ray.dirY * sin(rotSpeed);
+    state->ray.dirY = oldDirX * sin(rotSpeed) + state->ray.dirY * cos(rotSpeed);
+    double oldPlaneX = state->ray.planeX;
+    state->ray.planeX = state->ray.planeX * cos(rotSpeed) - state->ray.planeY * sin(rotSpeed);
+    state->ray.planeY = oldPlaneX * sin(rotSpeed) + state->ray.planeY * cos(rotSpeed);
+    // printf("\n-> 🤖 left state->ray.planeX{%f} state->ray.planeY{%f}", state->ray.planeX, state->ray.planeY);
   }
 }
 
