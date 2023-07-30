@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/29 11:37:18 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/07/29 20:12:59 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 {
     // double rotSpeed = 10 * 3.0;
     t_state *state;
-    double rotSpeed = 0.5;
-    double movent = 0.5;
+    double rotSpeed = 0.05; // 0.05
+    double movent = 0.05; // 0.03
 
     state = param;
 	printf("\n->🤖🤖🤖 left state->ray.planeX{%f} state->ray.planeY{%f}", state->ray.planeX, state->ray.planeY);

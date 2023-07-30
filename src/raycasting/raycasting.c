@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/07/27 18:56:56 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/29 19:54:14 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ void  ft_raycasting(t_state *state)
 
     //length of ray from one x or y-side to next x or y-side
     double deltaDistX;
-    if (state->ray.rayDirX == 0)
-      deltaDistX = 1e30;
-    else
+    // if (state->ray.rayDirX == 0)
+    //   deltaDistX = 1e30;
+    // else
       deltaDistX = fabs(1 / state->ray.rayDirX);
     double deltaDistY;
-    if (state->ray.rayDirY == 0)
-      deltaDistY = 1e30;
-    else
+    // if (state->ray.rayDirY == 0)
+    //   deltaDistY = 1e30;
+    // else
       deltaDistY = fabs(1 / state->ray.rayDirY);
     double perpWallDist;
 
