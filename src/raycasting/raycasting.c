@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/07/29 19:54:14 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:03:53 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void mlx_verLine(mlx_image_t *img, uint32_t x, uint32_t drawStart, uint32_t draw
 
 void  ft_raycasting(t_state *state)
 {
-  // int x;
-  uint32_t x;
+  int x;
+  // uint32_t x;
 
   x = 0;
   if (state->ray.g_img){
@@ -42,8 +42,10 @@ void  ft_raycasting(t_state *state)
     state->ray.rayDirY = state->ray.dirY + state->ray.planeY * state->ray.cameraX;
 
     //which box of the map we're in
-    uint32_t mapX = (uint32_t)state->player.x;
-    uint32_t mapY = (uint32_t)state->player.y;
+    int mapX = (int)state->player.x;
+    int mapY = (int)state->player.y;
+    // uint32_t mapX = (uint32_t)state->player.x;
+    // uint32_t mapY = (uint32_t)state->player.y;
 
     //length of ray from current position to next x or y-side
     double sideDistX;
@@ -54,19 +56,23 @@ void  ft_raycasting(t_state *state)
     // if (state->ray.rayDirX == 0)
     //   deltaDistX = 1e30;
     // else
-      deltaDistX = fabs(1 / state->ray.rayDirX);
+    deltaDistX = fabs(1 / state->ray.rayDirX);
     double deltaDistY;
     // if (state->ray.rayDirY == 0)
     //   deltaDistY = 1e30;
     // else
-      deltaDistY = fabs(1 / state->ray.rayDirY);
+    deltaDistY = fabs(1 / state->ray.rayDirY);
     double perpWallDist;
 
     //what direction to step in x or y-direction (either +1 or -1)
-    uint32_t stepX;
-    uint32_t stepY;
-    uint32_t hit = 0; //was there a wall hit?
-    uint32_t side; //was a NS or a EW wall hit?
+    // uint32_t stepX;
+    // uint32_t stepY;
+    // uint32_t hit = 0; //was there a wall hit?
+    // uint32_t side; //was a NS or a EW wall hit?
+    int stepX;
+    int stepY;
+    int hit = 0; //was there a wall hit?
+    int side; //was a NS or a EW wall hit?
 
     //calculate step and initial sideDist
     if (state->ray.rayDirX < 0)
@@ -117,11 +123,11 @@ void  ft_raycasting(t_state *state)
     //Calculate height of line to draw on screen
     int lineHeight = (int)(WINDOW_H / perpWallDist);
     //calculate lowest and highest pixel to fill in current stripe
-    // int drawStart = -lineHeight / 2 + WINDOW_H / 2;
-    uint32_t drawStart = -lineHeight / 2 + WINDOW_H / 2;
+
+    int drawStart = -lineHeight / 2 + WINDOW_H / 2;
     if(drawStart < 0)drawStart = 0;
-    // int drawEnd = lineHeight / 2 + WINDOW_H / 2;
-    uint32_t drawEnd = lineHeight / 2 + WINDOW_H / 2;
+
+    int drawEnd = lineHeight / 2 + WINDOW_H / 2;
     if(drawEnd >= (int)WINDOW_H)drawEnd = WINDOW_H - 1;
 
     // choose wall color
@@ -129,6 +135,4 @@ void  ft_raycasting(t_state *state)
     x++;
   }
   mlx_image_to_window(state->game.mlx, state->ray.g_img, 0, 0);
-
-
 }

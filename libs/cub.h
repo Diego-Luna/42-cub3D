@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/26 19:38:18 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/31 15:59:27 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@
 
 #define WINDOW_W 1000
 #define WINDOW_H 1000
+# define texWidth 64
+# define texHeight 64
 
 typedef struct s_color{
 	char *s_color;
@@ -84,11 +86,20 @@ typedef struct s_map
 
 typedef struct s_game
 {
+	int key;
 	int width;
 	int height;
 	mlx_t* mlx;
 	mlx_image_t *sky;
 	mlx_image_t *floor;
+	mlx_image_t *wall_no;
+	mlx_texture_t* tex_no;
+	mlx_image_t *wall_so;
+	mlx_texture_t* tex_so;
+	mlx_image_t *wall_we;
+	mlx_texture_t* tex_we;
+	mlx_image_t *wall_ea;
+	mlx_texture_t* tex_ea;
 }		t_game;
 
 typedef struct s_state
