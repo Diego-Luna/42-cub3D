@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/31 15:59:27 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:13:16 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 
 #define WINDOW_W 1000
 #define WINDOW_H 1000
-# define texWidth 64
-# define texHeight 64
+# define texWidth 128
+# define texHeight 128
 
 typedef struct s_color{
 	char *s_color;

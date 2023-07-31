@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/31 16:05:28 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:29:27 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@ void ft_creat_frams(t_state *state)
   ft_change_full_color(game->sky, map->c_color.r, map->c_color.g, map->c_color.b);
   ft_change_full_color(game->floor, map->f_color.r, map->f_color.g, map->f_color.b);
 	game->tex_no = mlx_load_png(state->map.path_no);
+  if (!game->tex_no)
+    ft_error_print("Error in texture no", state);
 	game->wall_no = mlx_texture_to_image(game->mlx, game->tex_no);
+  if (!game->wall_no)
+    ft_error_print("Error in img no", state);
 
   // Draw the image to the window
   if (mlx_image_to_window(game->mlx, game->sky, 0, 0) == -1)
@@ -111,12 +115,11 @@ void ft_rendering(void* param)
 void my_keyhook(mlx_key_data_t keydata, void* param)
 {
   t_state *state;
-  double rotSpeed = 0.05; // 0.05
-  double moventSpeed = 0.05; // 0.03
+  double rotSpeed = 0.1; // 0.05
+  double moventSpeed = 0.1; // 0.03
 
   state = param;
-	printf("\n->🤖🤖🤖 left state->ray.planeX{%f} state->ray.planeY{%f}", state->ray.planeX, state->ray.planeY);
-
+	// printf("\n->🤖🤖🤖 left state->ray.planeX{%f} state->ray.planeY{%f}", state->ray.planeX, state->ray.planeY);
 	if ((keydata.action == MLX_PRESS || state->game.key == 1) && keydata.key == MLX_KEY_W  && state->player.x + 1 < state->map.width)
   {
 		state->player.x = state->player.x + (1) * state->ray.dirX * moventSpeed;
@@ -160,6 +163,8 @@ void my_keyhook(mlx_key_data_t keydata, void* param)
 	{
 		state->game.key = 0;
 	}
+
+  ft_raycasting(state);
 }
 
 void ft_run_game(t_state *state)
@@ -168,7 +173,7 @@ void ft_run_game(t_state *state)
     ft_creat_frams(state);
     ft_raycasting(state);
     mlx_key_hook(state->game.mlx, &my_keyhook, state);
-    mlx_loop_hook(state->game.mlx, &ft_rendering, state);
+    // mlx_loop_hook(state->game.mlx, &ft_rendering, state);
     mlx_loop(state->game.mlx);
     ft_clone_game(state);
 }

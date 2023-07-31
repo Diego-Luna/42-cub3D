@@ -1,6 +1,6 @@
 WE ./assets/beach.png
-SO ./assets/cofee.png
-NO ./assets/computer.png
+SO ./assets/computer.png
+NO ./assets/small.png
 EA ./assets/skay.png
 
 C 0,15,80
