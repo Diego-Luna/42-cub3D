@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/07/31 16:03:53 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:08:43 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void mlx_verLine(mlx_image_t *img, uint32_t x, uint32_t drawStart, uint32_t draw
 void  ft_raycasting(t_state *state)
 {
   int x;
+  Uint32 buffer[screenHeight][screenWidth];
   // uint32_t x;
 
   x = 0;
@@ -129,6 +130,18 @@ void  ft_raycasting(t_state *state)
 
     int drawEnd = lineHeight / 2 + WINDOW_H / 2;
     if(drawEnd >= (int)WINDOW_H)drawEnd = WINDOW_H - 1;
+
+    //texturing calculations
+    int texNum = state->map.map[mapY][mapX] - '1'; //1 subtracted from it so that texture 0 can be used!
+    //calculate value of wallX
+    double wallX; //where exactly the wall was hit
+    if (side == 0) wallX = state.player.y + perpWallDist * state->ray.rayDirY;
+    else           wallX = state.player.x + perpWallDist * state->ray.rayDirX;
+    wallX -= floor((wallX));
+    //x coordinate on the texture
+    int texX = int(wallX * double(texWidth));
+    if(side == 0 && rayDirX > 0) texX = texWidth - texX - 1;
+    if(side == 1 && rayDirY < 0) texX = texWidth - texX - 1;
 
     // choose wall color
     mlx_verLine(state->ray.g_img, x, drawStart, drawEnd, get_rgba(255, 255, 0, 255));
