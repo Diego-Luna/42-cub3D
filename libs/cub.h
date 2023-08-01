@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/01 15:04:00 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:36:47 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_game
 	mlx_image_t *sky;
 	mlx_image_t *floor;
 	mlx_texture_t* tex_no;
+	mlx_image_t* img_no;
 	mlx_texture_t* tex_so;
 	mlx_texture_t* tex_we;
 	mlx_texture_t* tex_ea;
@@ -155,7 +156,7 @@ int get_rgba(int r, int g, int b, int a);
 void  ft_raycasting(t_state *state);
 
 // void	ft
-void	ft_complete_map(t_state *state);
+void	ft_complete_map(char **map);
 int	ft_valid_info(char c);
 
 #endif

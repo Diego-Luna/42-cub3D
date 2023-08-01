@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/01 14:44:55 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:38:43 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,20 @@ void	ft_is_map_clean_space(t_state *state, char c, size_t y, size_t x)
 
 }
 
-void	ft_complete_map(t_state *state){
+void	ft_complete_map(char **map){
 	size_t i;
 	size_t ii;
 
 	i = 0;
-	while (i < state->map.height)
+	while (map[i])
 	{
 		ii = 0;
-		while (ii < state->map.width)
+    // printf("\n 🖥 {%s}", map[i]);
+		while (map[i][ii])
 		{
-      if (ft_valid_info(state->map.map[i][ii]) == 0)
-        state->map.map[i][ii] = '0';
+      if (ft_valid_info(map[i][ii]) == 0){
+        map[i][ii] = 'P';
+      }
 			ii++;
 		}
 		i++;
@@ -83,8 +85,10 @@ void ft_init_game(t_state *state)
     ft_change_degree_radias(state, 1.5708);
   if (state->map.direccion == 'W')
     ft_change_degree_radias(state, 3.14159 );
-  game->height = 1000;
-  game->width = 1000;
+  // game->height = 1000;
+  // game->width = 1000;
+  game->height = HEIGHT;
+  game->width = WIDTH;
   game->mlx =  mlx_init(WINDOW_W,  WINDOW_H, "CUB3D", TRUE);
   if (!game->mlx)
 	ft_error_print("Error displaying the image", state);
@@ -104,6 +108,9 @@ void ft_creat_frams(t_state *state)
   ft_change_full_color(game->floor, map->f_color.r, map->f_color.g, map->f_color.b);
 	game->tex_no = mlx_load_png(state->map.path_no);
   if (!game->tex_no)
+    ft_error_print("Error in texture no", state);
+  game->img_no = mlx_texture_to_image(state->game.mlx, game->tex_no);
+  if (!game->img_no)
     ft_error_print("Error in texture no", state);
 	// game->tex_so = mlx_load_png(state->map.path_so);
   // if (!game->tex_so)
@@ -144,10 +151,10 @@ int ft_movent_posiblel_WS(t_state *state, int redreccion, double moventSpeed)
 	y = state->player.y + (redreccion) * state->ray.dirY * moventSpeed;
 
   printf("\n --> 🧘🏾‍♀️ x{%f}, y{%f}, state->map.width{%zu}, state->map.height{%zu} ", x, y, state->map.width, state->map.height);
-  // if (x >= (double)state->map.width - 2  || x < 1)
-  //   return (0);
-  // if (y >= (double)state->map.height -1  || y < 1)
-  //   return (0);
+  if (x >= (double)state->map.width - 2  || x < 1)
+    return (0);
+  if (y >= (double)state->map.height -1  || y < 1)
+    return (0);
   if (state->map.map[(int)y][(int)x] == '1')
   {
     return (0);
@@ -163,11 +170,11 @@ int ft_movent_posiblel_AD(t_state *state, int redreccion, double moventSpeed)
   x = state->player.x + (redreccion) * state->ray.dirY * moventSpeed;
   y = state->player.y - (redreccion) * state->ray.dirX * moventSpeed;
 
-  // printf("\n --> 🧘🏾 x{%f}, y{%f}, state->map.width{%zu}, state->map.height{%zu} ", x, y, state->map.width, state->map.height);
-  // if (x >= (double)state->map.width - 2 || x < 1)
-  //   return (0);
-  // if (y >= (double)state->map.height - 1 || y < 1)
-  //   return (0);
+  printf("\n --> 🧘🏾 x{%f}, y{%f}, state->map.width{%zu}, state->map.height{%zu} ", x, y, state->map.width, state->map.height);
+  if (x >= (double)state->map.width - 2 || x < 1)
+    return (0);
+  if (y >= (double)state->map.height - 1 || y < 1)
+    return (0);
   if (state->map.map[(int)y][(int)x] == '1')
   {
     return (0);

@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/01 13:11:47 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:38:58 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void  ft_raycasting(t_state *state)
       //jump to next map square, either in x-direction, or in y-direction
       if (sideDistX < sideDistY)
       {
-        // printf("\n 🔥 ⬅️ ➡️");
         sideDistX += deltaDistX;
         mapX += stepX;
         side = SIDE_E; // 0 -> W and E % 2
@@ -98,7 +97,6 @@ void  ft_raycasting(t_state *state)
       }
       else
       {
-        // printf("\n 🤟 🔼 🔽");
         sideDistY += deltaDistY;
         mapY += stepY;
         side = SIDE_N; // 1 -> N and S
@@ -136,18 +134,21 @@ void  ft_raycasting(t_state *state)
 
     double step = 1.0 * (state->game.tex_no->height) / lineHeight;
     // Starting texture coordinate
-    double texPos = (drawStart - (WINDOW_H / 2 + lineHeight / 2)) * step;
+    // double texPos = (drawStart - (WINDOW_H / 2 + lineHeight / 2)) * step;
+    double texPos = (drawStart - WINDOW_H / 2 + lineHeight / 2) * step;
     for(int y = drawStart; y < drawEnd; y++)
     {
       // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
       int texY = (int)texPos & ((state->game.tex_no->height) - 1);
       texPos += step;
       uint32_t color;
-      color = get_rgba(155, 155 , 255, 255);
+      color = get_rgba(0, 0 , 255, 255);
+      // if(side == SIDE_W) color = ((uint32_t *)state->game.tex_no->pixels)[x + state->game.tex_no->width * texY];
       if(side == SIDE_W) color = ((uint32_t *)state->game.tex_no->pixels)[x + state->game.tex_no->width * texY];
-      if(side == SIDE_E) color = get_rgba(255, 255 , 255, 255);
-      if(side == SIDE_S) color = get_rgba(255, 0 , 0, 255);
-      if(side == SIDE_N) color = get_rgba(0, 0 , 255, 255);
+      // if(side == SIDE_W) color = ((uint32_t *)state->game.tex_no->pixels)[texX * texY];
+      // if(side == SIDE_E) color = get_rgba(255, 255 , 255, 255);
+      // if(side == SIDE_S) color = get_rgba(255, 0 , 0, 255);
+      // if(side == SIDE_N) color = get_rgba(0, 0 , 255, 255);
       mlx_put_pixel(state->ray.g_img, x, y, color);
     }
     x++;

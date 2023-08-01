@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/01 15:04:39 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:46:57 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,24 +202,26 @@ int	ft_valid_info(char c)
 
 void	ft_is_map_close(t_recursive	*info, int x, int y)
 {
+	if (x >= info->x_max || x == 0 || y >= info->y_max || y < 0)
+	{
+		info->is_path_exit++;
+		return;
+	}
 	if (info->map[y][x] == ' ')
 	{
-		info->is_path_exit = 1;
+		info->map[y][x] = 'X';
+		info->is_path_exit++;
 		return ;
 	}
-	if (info->map[y][x] == 'C')
+	if (info->map[y][x] == '1' || 	info->map[y][x] == 'X')
 	{
-		info->n_collec--;
-	}
-	if (ft_checkrecursive(info, x, y) == 1)
-	{
-		return ;
+		return;
 	}
 	info->map[y][x] = 'X';
-	ft_recursive_table(info, x, y - 1);
-	ft_recursive_table(info, x, y + 1);
-	ft_recursive_table(info, x + 1, y);
-	ft_recursive_table(info, x - 1, y);
+	ft_is_map_close(info, x, y - 1);
+	ft_is_map_close(info, x, y + 1);
+	ft_is_map_close(info, x + 1, y);
+	ft_is_map_close(info, x - 1, y);
 }
 
 void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
@@ -270,7 +272,7 @@ char **ft_duplicate_table(t_state *state, char **map, size_t heith)
 	char **new;
 
 	i = 0;
-	new =ft_calloc(sizeof(char *), heith);
+	new = ft_calloc(sizeof(char *), heith + 1);
 	if (!new)
 		ft_error_print("Error in malloc", state);
 	while (i < heith)
@@ -284,21 +286,17 @@ char **ft_duplicate_table(t_state *state, char **map, size_t heith)
 int	ft_check_map(t_state *state)
 {
 	t_recursive	info;
-	int i = 0;
 
 	ft_map_validity(state, ft_is_map_repeat);
-	ft_complete_map(state);
 	ft_print_map(state);
 	info.map = ft_duplicate_table(state, state->map.map, state->map.height);
-	// while (state->map.map[i])
-	// {
-	// 	if (strcmp(state->map.map[i], error.map[i]))
-	// 	{
-	// 		printf("/n Error in line {%i}", i);
-	// 	}
-	// 	i++;
-	// }
-	ft_is_map_close(state, &info);
-	ft_free_table(error.map);
+	// ft_complete_map(info.map);
+	info.is_path_exit = 0;
+	info.x_max = state->map.width;
+	info.y_max = state->map.height;
+	ft_is_map_close(&info, state->player.x,  state->player.y);
+	ft_free_table(info.map);
+	if (info.is_path_exit > 0)
+		ft_error_print("Error in map no close", state);
 	return (TRUE);
 }
