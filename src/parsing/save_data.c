@@ -6,11 +6,12 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/26 19:29:09 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:04:39 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libs/cub.h"
+#include <string.h>
 
 void	save_imgs(t_state *state, char *file)
 {
@@ -72,7 +73,7 @@ char	*ft_clean_last(char *str, t_state *state)
 
 	i = 0;
 	ii = 0;
-	new = ft_calloc(sizeof(char), state->map.width);
+	new = ft_calloc(sizeof(char), state->map.width + 1);
 	// new = ft_calloc(sizeof(char), ft_strlen(str));
 	if (!new)
 		ft_error_print("error in malloc", state);
@@ -190,22 +191,35 @@ void	ft_save_data(t_state *state, char *file)
 	ft_save_color(state, file);
 }
 
-void	ft_is_map_close(t_state *state, char c, size_t y, size_t x)
+int	ft_valid_info(char c)
 {
-	char	**map;
+	if (c == '0' || c == '1' || c == 'W' || c == 'E' || c == 'S' || c == 'N')
+	{
+		return (1);
+	}
+	return (0);
+}
 
-	map = state->map.map;
-	if (c != '0')
+void	ft_is_map_close(t_recursive	*info, int x, int y)
+{
+	if (info->map[y][x] == ' ')
+	{
+		info->is_path_exit = 1;
 		return ;
-	if ((x == ft_strlen(map[y]) - 1) || y == state->map.height - 1 || x == 0
-		|| y == 0)
-		ft_error_print("Error no Map valid, not close 🤯", state);
-	if (x != 0 && y != 0 && ((map[y][x - 1] && map[y][x - 1] == ' ')
-			|| (map[y][x + 1] && map[y][x + 1] == ' ') || ((y
-					- 1) < state->map.height && x < ft_strlen(map[y - 1])
-				&& map[y - 1][x] == ' ') || ((y + 1) < state->map.height
-				&& x < ft_strlen(map[y + 1]) && map[y + 1][x] == ' ')))
-		ft_error_print("Error no Map valid, not close 🤯", state);
+	}
+	if (info->map[y][x] == 'C')
+	{
+		info->n_collec--;
+	}
+	if (ft_checkrecursive(info, x, y) == 1)
+	{
+		return ;
+	}
+	info->map[y][x] = 'X';
+	ft_recursive_table(info, x, y - 1);
+	ft_recursive_table(info, x, y + 1);
+	ft_recursive_table(info, x + 1, y);
+	ft_recursive_table(info, x - 1, y);
 }
 
 void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
@@ -250,9 +264,41 @@ void	ft_map_validity(t_state *state, void (*f)(t_state *, char, size_t,
 	}
 }
 
+char **ft_duplicate_table(t_state *state, char **map, size_t heith)
+{
+	size_t i;
+	char **new;
+
+	i = 0;
+	new =ft_calloc(sizeof(char *), heith);
+	if (!new)
+		ft_error_print("Error in malloc", state);
+	while (i < heith)
+	{
+		new[i] = ft_strdup(map[i]);
+		i++;
+	}
+	return new;
+}
+
 int	ft_check_map(t_state *state)
 {
-	ft_map_validity(state, ft_is_map_close);
+	t_recursive	info;
+	int i = 0;
+
 	ft_map_validity(state, ft_is_map_repeat);
+	ft_complete_map(state);
+	ft_print_map(state);
+	info.map = ft_duplicate_table(state, state->map.map, state->map.height);
+	// while (state->map.map[i])
+	// {
+	// 	if (strcmp(state->map.map[i], error.map[i]))
+	// 	{
+	// 		printf("/n Error in line {%i}", i);
+	// 	}
+	// 	i++;
+	// }
+	ft_is_map_close(state, &info);
+	ft_free_table(error.map);
 	return (TRUE);
 }

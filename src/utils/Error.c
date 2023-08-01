@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:12:20 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/22 13:56:47 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/01 14:17:34 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ void	ft_error_print(char *str, t_state *state)
 {
 	char	*msg;
 
-	msg = ft_strjoin("🛑 Error: ", str);
-	ft_putendl_fd(msg, 2);
-	ft_free(msg);
+	if (str)
+	{
+		msg = ft_strjoin("🛑 Error: ", str);
+		ft_putendl_fd(msg, 2);
+		ft_free(msg);
+	}
 	if (state)
 		ft_free_state(state);
 	ft_exit(1);

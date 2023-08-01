@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/31 17:13:16 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:04:00 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,13 @@
 #define DIRECCION_SO 180
 #define DIRECCION_EA 270
 
-#define WINDOW_W 1000
-#define WINDOW_H 1000
+#define SIDE_N 1
+#define SIDE_W 2
+#define SIDE_S 3
+#define SIDE_E 4
+
+#define WINDOW_W 500
+#define WINDOW_H 500
 # define texWidth 128
 # define texHeight 128
 
@@ -92,13 +97,9 @@ typedef struct s_game
 	mlx_t* mlx;
 	mlx_image_t *sky;
 	mlx_image_t *floor;
-	mlx_image_t *wall_no;
 	mlx_texture_t* tex_no;
-	mlx_image_t *wall_so;
 	mlx_texture_t* tex_so;
-	mlx_image_t *wall_we;
 	mlx_texture_t* tex_we;
-	mlx_image_t *wall_ea;
 	mlx_texture_t* tex_ea;
 }		t_game;
 
@@ -109,6 +110,16 @@ typedef struct s_state
 	t_game game;
 	t_raycasting ray;
 }			t_state;
+
+typedef struct s_info_recursive
+{
+	int		n_collec;
+	int		x_max;
+	int		y_max;
+	char	**map;
+	char	is_path_exit;
+	char	is_posible;
+}			t_recursive;
 
 // check file
 int			ft_check_file(char *file, t_state *state);
@@ -125,6 +136,7 @@ void		ft_print_map(t_state *state);
 // Error
 void		ft_error_print(char *str, t_state *state);
 void		ft_free_state(t_state *state);
+char	**ft_free_table(char **src);
 char		*ft_free(char *src);
 
 // str
@@ -142,5 +154,8 @@ int get_rgba(int r, int g, int b, int a);
 // raycasting
 void  ft_raycasting(t_state *state);
 
+// void	ft
+void	ft_complete_map(t_state *state);
+int	ft_valid_info(char c);
 
 #endif
