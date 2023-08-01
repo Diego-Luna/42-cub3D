@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/01 19:38:43 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:58:29 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ void ft_creat_frams(t_state *state)
   //   ft_error_print("Error in texture no", state);
 
   // Draw the image to the window
+  mlx_resize_image(game->img_no, game->width, game->height);
+  // if (mlx_image_to_window(game->mlx, game->img_no, 0, 0) == -1)
+		// ft_error_print("Error displaying the image", state);
   if (mlx_image_to_window(game->mlx, game->sky, 0, 0) == -1)
 		ft_error_print("Error displaying the image", state);
   if (mlx_image_to_window(game->mlx, game->floor, 0, game->height / 2 ) == -1)

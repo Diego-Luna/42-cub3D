@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/01 19:38:58 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/01 19:58:17 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,8 @@ void  ft_raycasting(t_state *state)
     int drawEnd = lineHeight / 2 + WINDOW_H / 2;
     if(drawEnd >= (int)WINDOW_H)drawEnd = WINDOW_H - 1;
 
-    mlx_verLine(state->ray.g_img, x, drawStart, drawEnd, get_rgba(255, 255, 255, 255));
+    // mlx_verLine(state->ray.g_img, x, drawStart, drawEnd, get_rgba(255, 255, 255, 255));
+
     //texturing calculations
     //calculate value of wallX
     double wallX; //where exactly the wall was hit
@@ -128,24 +129,25 @@ void  ft_raycasting(t_state *state)
     else           wallX = state->player.x + perpWallDist * state->ray.rayDirX;
     wallX -= floor(wallX);
     //x coordinate on the texture
-    int texX = (int)wallX * (double)state->game.tex_no->width;
-    if(side % 2 == 0 && state->ray.rayDirX > 0) texX = state->game.tex_no->width - texX - 1;
-    if(side % 2 != 0 && state->ray.rayDirY < 0) texX = state->game.tex_no->width - texX - 1;
+    int texX = (int)wallX * (double)state->game.img_no->width;
+    if(side % 2 == 0 && state->ray.rayDirX > 0) texX = state->game.img_no->width - texX - 1;
+    if(side % 2 != 0 && state->ray.rayDirY < 0) texX = state->game.img_no->width - texX - 1;
 
-    double step = 1.0 * (state->game.tex_no->height) / lineHeight;
+    double step = 1.0 * (state->game.img_no->height) / lineHeight;
     // Starting texture coordinate
     // double texPos = (drawStart - (WINDOW_H / 2 + lineHeight / 2)) * step;
     double texPos = (drawStart - WINDOW_H / 2 + lineHeight / 2) * step;
     for(int y = drawStart; y < drawEnd; y++)
     {
       // Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-      int texY = (int)texPos & ((state->game.tex_no->height) - 1);
+      int texY = (int)texPos & ((state->game.img_no->height) - 1);
       texPos += step;
       uint32_t color;
-      color = get_rgba(0, 0 , 255, 255);
-      // if(side == SIDE_W) color = ((uint32_t *)state->game.tex_no->pixels)[x + state->game.tex_no->width * texY];
-      if(side == SIDE_W) color = ((uint32_t *)state->game.tex_no->pixels)[x + state->game.tex_no->width * texY];
-      // if(side == SIDE_W) color = ((uint32_t *)state->game.tex_no->pixels)[texX * texY];
+      color = get_rgba(255, 0, 255, 255);
+      // if(side == SIDE_W) color = ((uint32_t *)state->game.img_no->pixels)[x + state->game.img_no->width * texY];
+      if(side == SIDE_W)
+        color = ((uint32_t *)state->game.img_no->pixels)[x + state->game.img_no->width * texY];
+      // if(side == SIDE_W) color = ((uint32_t *)state->game.img_no->pixels)[texX * texY];
       // if(side == SIDE_E) color = get_rgba(255, 255 , 255, 255);
       // if(side == SIDE_S) color = get_rgba(255, 0 , 0, 255);
       // if(side == SIDE_N) color = get_rgba(0, 0 , 255, 255);
