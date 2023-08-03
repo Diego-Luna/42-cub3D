@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/01 19:36:47 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/02 16:57:33 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,11 @@ typedef struct s_game
 	mlx_texture_t* tex_no;
 	mlx_image_t* img_no;
 	mlx_texture_t* tex_so;
+	mlx_image_t* img_so;
 	mlx_texture_t* tex_we;
+	mlx_image_t* img_we;
 	mlx_texture_t* tex_ea;
+	mlx_image_t* img_ea;
 }		t_game;
 
 typedef struct s_state

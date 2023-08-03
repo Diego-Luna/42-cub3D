@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/01 19:58:29 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:19:39 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,11 @@ void ft_init_game(t_state *state)
     ft_change_degree_radias(state, 1.5708);
   if (state->map.direccion == 'W')
     ft_change_degree_radias(state, 3.14159 );
-  // game->height = 1000;
-  // game->width = 1000;
   game->height = HEIGHT;
   game->width = WIDTH;
   game->mlx =  mlx_init(WINDOW_W,  WINDOW_H, "CUB3D", TRUE);
   if (!game->mlx)
-	ft_error_print("Error displaying the image", state);
-  // ft_complete_map(state);
-	// ft_print_map(state);
-
+    ft_error_print("Error in MLX", state);
 }
 
 void ft_creat_frams(t_state *state)
@@ -106,26 +101,42 @@ void ft_creat_frams(t_state *state)
 	game->floor = mlx_new_image(game->mlx, game->width, game->height  / 2);
   ft_change_full_color(game->sky, map->c_color.r, map->c_color.g, map->c_color.b);
   ft_change_full_color(game->floor, map->f_color.r, map->f_color.g, map->f_color.b);
-	game->tex_no = mlx_load_png(state->map.path_no);
+
+  game->tex_no = mlx_load_png(state->map.path_no);
   if (!game->tex_no)
     ft_error_print("Error in texture no", state);
   game->img_no = mlx_texture_to_image(state->game.mlx, game->tex_no);
   if (!game->img_no)
-    ft_error_print("Error in texture no", state);
-	// game->tex_so = mlx_load_png(state->map.path_so);
-  // if (!game->tex_so)
-  //   ft_error_print("Error in texture so", state);
-	// game->tex_we = mlx_load_png(state->map.path_we);
-  // if (!game->tex_we)
-  //   ft_error_print("Error in texture we", state);
-	// game->tex_ea = mlx_load_png(state->map.path_ea);
-  // if (!game->tex_ea)
-  //   ft_error_print("Error in texture no", state);
+    ft_error_print("Error in img no", state);
+
+  game->tex_so = mlx_load_png(state->map.path_so);
+  if (!game->tex_so)
+    ft_error_print("Error in texture so", state);
+  game->img_so = mlx_texture_to_image(state->game.mlx, game->tex_so);
+  if (!game->img_so)
+    ft_error_print("Error in img so", state);
+
+  game->tex_we = mlx_load_png(state->map.path_we);
+  if (!game->tex_we)
+    ft_error_print("Error in texture we", state);
+  game->img_we = mlx_texture_to_image(state->game.mlx, game->tex_we);
+  if (!game->img_we)
+    ft_error_print("Error in img we", state);
+
+  game->tex_ea = mlx_load_png(state->map.path_ea);
+  if (!game->tex_ea)
+    ft_error_print("Error in texture ea", state);
+  game->img_ea = mlx_texture_to_image(state->game.mlx, game->tex_ea);
+  if (!game->img_ea)
+    ft_error_print("Error in img ea", state);
+
+  // resize_ima
+  mlx_resize_image(game->img_no, game->width, game->height);
+  mlx_resize_image(game->img_so, game->width, game->height);
+  mlx_resize_image(game->img_we, game->width, game->height);
+  mlx_resize_image(game->img_ea, game->width, game->height);
 
   // Draw the image to the window
-  mlx_resize_image(game->img_no, game->width, game->height);
-  // if (mlx_image_to_window(game->mlx, game->img_no, 0, 0) == -1)
-		// ft_error_print("Error displaying the image", state);
   if (mlx_image_to_window(game->mlx, game->sky, 0, 0) == -1)
 		ft_error_print("Error displaying the image", state);
   if (mlx_image_to_window(game->mlx, game->floor, 0, game->height / 2 ) == -1)

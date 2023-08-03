@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/01 19:58:17 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/02 19:59:00 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ void mlx_verLine(mlx_image_t *img, uint32_t x, uint32_t drawStart, uint32_t draw
 void  ft_raycasting(t_state *state)
 {
   int x;
+  int numbWall[5];
 
   x = 0;
+  numbWall[0] = -1;
+  numbWall[1] = -1;
+  numbWall[2] = -1;
   if (state->ray.g_img){
     mlx_delete_image(state->game.mlx, state->ray.g_img);
   }
@@ -106,6 +110,16 @@ void  ft_raycasting(t_state *state)
       //Check if ray has hit a wall
       if (state->map.map[mapY][mapX] == '1') hit = 1;
     }
+    if (numbWall[1] == -1 || numbWall[2] == -1)
+    {
+      numbWall[0]++;
+      numbWall[1] = mapX;
+      numbWall[2] = mapY;
+    }else if (mapX != numbWall[1] || numbWall[2] != mapY){
+      numbWall[1] = -1;
+      numbWall[2] = -1;
+      // numbWall[0]++;
+    }
     //Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
     if(side % 2 == 0) perpWallDist = (sideDistX - deltaDistX);
     else          perpWallDist = (sideDistY - deltaDistY);
@@ -122,20 +136,32 @@ void  ft_raycasting(t_state *state)
 
     // mlx_verLine(state->ray.g_img, x, drawStart, drawEnd, get_rgba(255, 255, 255, 255));
 
+    double cellSizeX = WINDOW_W / (double)state->map.width;
+    double cellSizeY = WINDOW_H / (double)state->map.height;
+    double cellSize = fmin(cellSizeX, cellSizeY);
+    mlx_resize_image(state->game.img_no, cellSize, state->game.height);
+    mlx_resize_image(state->game.img_so, cellSize, state->game.height);
+    mlx_resize_image(state->game.img_we, cellSize, state->game.height);
+    mlx_resize_image(state->game.img_ea, cellSize, state->game.height);
     //texturing calculations
     //calculate value of wallX
     double wallX; //where exactly the wall was hit
     if (side % 2 == 0) wallX = state->player.y + perpWallDist * state->ray.rayDirY;
     else           wallX = state->player.x + perpWallDist * state->ray.rayDirX;
     wallX -= floor(wallX);
+
     //x coordinate on the texture
-    int texX = (int)wallX * (double)state->game.img_no->width;
-    if(side % 2 == 0 && state->ray.rayDirX > 0) texX = state->game.img_no->width - texX - 1;
-    if(side % 2 != 0 && state->ray.rayDirY < 0) texX = state->game.img_no->width - texX - 1;
+    // int texX = (int)wallX * (double)state->game.img_no->height;
+    int texX = (int)(wallX * cellSize);
+
+    if(side % 2 == 0 && state->ray.rayDirX > 0) texX = state->game.img_no->height - texX - 1;
+    if(side % 2 != 0 && state->ray.rayDirY < 0) texX = state->game.img_no->height - texX - 1;
+    printf("\n wallX{%f} texX{%d} cellSize{%f} cellSizeX{%f}", wallX, texX, cellSize, cellSizeX);
+    printf("\n 🎩 numbWall{%d}", numbWall[0]);
+    // lineHeight = (int)(cellSize / perpWallDist);
 
     double step = 1.0 * (state->game.img_no->height) / lineHeight;
     // Starting texture coordinate
-    // double texPos = (drawStart - (WINDOW_H / 2 + lineHeight / 2)) * step;
     double texPos = (drawStart - WINDOW_H / 2 + lineHeight / 2) * step;
     for(int y = drawStart; y < drawEnd; y++)
     {
@@ -143,14 +169,13 @@ void  ft_raycasting(t_state *state)
       int texY = (int)texPos & ((state->game.img_no->height) - 1);
       texPos += step;
       uint32_t color;
-      color = get_rgba(255, 0, 255, 255);
-      // if(side == SIDE_W) color = ((uint32_t *)state->game.img_no->pixels)[x + state->game.img_no->width * texY];
-      if(side == SIDE_W)
-        color = ((uint32_t *)state->game.img_no->pixels)[x + state->game.img_no->width * texY];
-      // if(side == SIDE_W) color = ((uint32_t *)state->game.img_no->pixels)[texX * texY];
-      // if(side == SIDE_E) color = get_rgba(255, 255 , 255, 255);
-      // if(side == SIDE_S) color = get_rgba(255, 0 , 0, 255);
-      // if(side == SIDE_N) color = get_rgba(0, 0 , 255, 255);
+      if(side == SIDE_W) color = ((uint32_t *)state->game.img_we->pixels)[texX + texY * state->game.img_we->width];
+      // if(side == SIDE_W) color = ((uint32_t *)state->game.img_we->pixels)[x + state->game.img_we->width * texY];
+      if(side == SIDE_E) color = ((uint32_t *)state->game.img_ea->pixels)[x + state->game.img_ea->width * texY];
+      if(side == SIDE_S) color = ((uint32_t *)state->game.img_so->pixels)[x + state->game.img_so->width * texY];
+      if(side == SIDE_N) color = ((uint32_t *)state->game.img_no->pixels)[x + state->game.img_no->width * texY];
+      // if(side == SIDE_N) color = ((uint32_t *)state->game.img_no->pixels)[x + y * WINDOW_W];
+      // printf("\n side {%d} pixel{%d}  number{%d} texPos{%f}", side,  ((uint32_t *)state->game.img_we->pixels)[x + state->game.img_we->width * texY],  (x + state->game.img_we->width * texY), texPos);
       mlx_put_pixel(state->ray.g_img, x, y, color);
     }
     x++;

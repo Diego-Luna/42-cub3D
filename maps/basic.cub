@@ -1,16 +1,13 @@
 WE ./assets/beach.png
-SO ./assets/computer.png
+SO ./assets/cofee.png
 NO ./assets/computer.png
 EA ./assets/skay.png
 
-C 0,150,80
-F 150,150,150
+C 0,0,0
+F 0,0,0
 
-1111111111
-1001000101
-1001000001
-10010N0001
-1001000101
-1001000101
-1001000101
-1111111111
+11111
+10001
+10N01
+10001
+11111

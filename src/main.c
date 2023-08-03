@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/01 19:09:33 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/02 18:55:16 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void		ft_print_map(t_state *state){
 	printf("\n\n --> map <--");
 	while (state->map.map[i])
 	{
-		// printf("\n ->{%s} w{%zu}", state->map.map[i], ft_strlen(state->map.map[i]));
-		printf("\n '%s' '%i' w{%zu}", state->map.map[i], i, ft_strlen(state->map.map[i]));
+		printf("\n ->{%s} w{%zu}", state->map.map[i], ft_strlen(state->map.map[i]));
+		// printf("\n '%s' '%i' w{%zu}", state->map.map[i], i, ft_strlen(state->map.map[i]));
 		i++;
 	}
 	printf("\n -> map.width{%zu}", state->map.width);
@@ -49,6 +49,16 @@ void	ft_init_map(t_state *state)
 	state->map.path_ea = NULL;
 	state->game.sky = NULL;
 	state->game.floor = NULL;
+
+	state->game.tex_no = NULL;
+	state->game.img_no = NULL;
+	state->game.tex_so = NULL;
+	state->game.img_so = NULL;
+	state->game.tex_we = NULL;
+	state->game.img_we = NULL;
+	state->game.tex_ea = NULL;
+	state->game.img_ea = NULL;
+
 	state->map.f_color.s_color = NULL;
 	state->map.c_color.s_color = NULL;
 	state->map.direccion = '\0';
