@@ -1,10 +1,10 @@
 WE ./assets/beach.png
 SO ./assets/cofee.png
 NO ./assets/computer.png
-EA ./assets/skay.png
+EA ./assets/small.png
 
-C 0,0,0
-F 0,0,0
+C 150,150,150
+F 255,255,255
 
 11111
 10001

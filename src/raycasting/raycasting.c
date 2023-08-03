@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 20:11:25 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/02 19:59:00 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:49:50 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void  ft_raycasting(t_state *state)
     int drawEnd = lineHeight / 2 + WINDOW_H / 2;
     if(drawEnd >= (int)WINDOW_H)drawEnd = WINDOW_H - 1;
 
-    // mlx_verLine(state->ray.g_img, x, drawStart, drawEnd, get_rgba(255, 255, 255, 255));
+    mlx_verLine(state->ray.g_img, x, drawStart, drawEnd, get_rgba(255, 255, 255, 255));
 
     double cellSizeX = WINDOW_W / (double)state->map.width;
     double cellSizeY = WINDOW_H / (double)state->map.height;
@@ -158,7 +158,6 @@ void  ft_raycasting(t_state *state)
     if(side % 2 != 0 && state->ray.rayDirY < 0) texX = state->game.img_no->height - texX - 1;
     printf("\n wallX{%f} texX{%d} cellSize{%f} cellSizeX{%f}", wallX, texX, cellSize, cellSizeX);
     printf("\n 🎩 numbWall{%d}", numbWall[0]);
-    // lineHeight = (int)(cellSize / perpWallDist);
 
     double step = 1.0 * (state->game.img_no->height) / lineHeight;
     // Starting texture coordinate
@@ -170,12 +169,10 @@ void  ft_raycasting(t_state *state)
       texPos += step;
       uint32_t color;
       if(side == SIDE_W) color = ((uint32_t *)state->game.img_we->pixels)[texX + texY * state->game.img_we->width];
-      // if(side == SIDE_W) color = ((uint32_t *)state->game.img_we->pixels)[x + state->game.img_we->width * texY];
-      if(side == SIDE_E) color = ((uint32_t *)state->game.img_ea->pixels)[x + state->game.img_ea->width * texY];
-      if(side == SIDE_S) color = ((uint32_t *)state->game.img_so->pixels)[x + state->game.img_so->width * texY];
-      if(side == SIDE_N) color = ((uint32_t *)state->game.img_no->pixels)[x + state->game.img_no->width * texY];
-      // if(side == SIDE_N) color = ((uint32_t *)state->game.img_no->pixels)[x + y * WINDOW_W];
-      // printf("\n side {%d} pixel{%d}  number{%d} texPos{%f}", side,  ((uint32_t *)state->game.img_we->pixels)[x + state->game.img_we->width * texY],  (x + state->game.img_we->width * texY), texPos);
+      if(side == SIDE_E) color = ((uint32_t *)state->game.img_ea->pixels)[texX + texY * state->game.img_ea->width];
+      if(side == SIDE_S) color = ((uint32_t *)state->game.img_so->pixels)[texX + texY * state->game.img_so->width];
+      if(side == SIDE_N) color = ((uint32_t *)state->game.img_no->pixels)[texX + texY * state->game.img_no->width];
+      color = get_rgba(((color >> 16) & 0xFF), ((color >> 8) & 0xFF), (color & 0xFF), 255);
       mlx_put_pixel(state->ray.g_img, x, y, color);
     }
     x++;
