@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:47:18 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/22 13:54:18 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 10:49:58 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,6 @@ int	ft_check_path(char *file)
 	}
 	close(fd);
 	return (TRUE);
-}
-
-int	ft_check_file_color(char *str, int *img)
-{
-	char	*cut;
-	char	*cut_2;
-	char	*cut_3;
-
-	img[4] = 0;
-	cut = ft_cut_space(str, 0);
-	if (ft_str_equals(cut, "F") == TRUE || ft_str_equals(cut, "C") == TRUE)
-	{
-		if (ft_str_equals(cut, "F") == TRUE)
-			img[6]++;
-		if (ft_str_equals(cut, "C") == TRUE)
-			img[7]++;
-		if (ft_count_words(str, ' ') != 2)
-			return (ft_free(cut), FALSE);
-		cut_2 = ft_cut_word(str, ' ', 2);
-		cut = ft_free(cut);
-		if (ft_count_words(cut_2, ',') != 3)
-			return (ft_free(cut_2), FALSE);
-		while (img[4] < 3)
-		{
-			cut_3 = ft_cut_word(cut_2, ',', img[4] + 1);
-			if (ft_strlen(cut_3) > 3 || ft_str_is_number(cut_3) == FALSE
-				|| (ft_atoi(cut_3) < 0 || ft_atoi(cut_3) > 255))
-				return (ft_free(cut_2), ft_free(cut_3), FALSE);
-			ft_free(cut_3);
-			img[4]++;
-		}
-		ft_free(cut_2);
-		img[5]++;
-		return (ft_free(cut), TRUE);
-	}
-	return (ft_free(cut), FALSE);
 }
 
 int	ft_check_file_img(char *str, int *img)
@@ -100,59 +64,6 @@ int	ft_check_file_check(t_state *state, int *img, int line)
 		return (FALSE);
 	}
 	return (line);
-}
-
-int	ft_check_file_emptyline(char *file)
-{
-	int	i;
-
-	i = 0;
-	while (file[i])
-	{
-		if (file[i] != ' ' && file[i] != '\t' && file[i] != '\n')
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
-}
-
-int	ft_check_file_img_color(char *file, t_state *state)
-{
-	int		fd;
-	char	*str;
-	int		img[8];
-	int		ft[3];
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		ft_error_print("File not exists", state);
-	img[0] = 0;
-	img[1] = 0;
-	img[2] = 0;
-	img[3] = 0;
-	img[5] = 0;
-	img[6] = 0;
-	img[7] = 0;
-	ft[2] = 0;
-	str = get_next_line(fd);
-	ft[2]++;
-	while (str != NULL)
-	{
-		ft[0] = ft_check_file_img(str, img);
-		ft[1] = ft_check_file_color(str, img);
-		if ((ft[0] == FALSE && ft[1] == FALSE
-				&& ft_check_file_emptyline(str) == FALSE) || (ft[0] == TRUE
-				&& ft[1] == TRUE && ft_check_file_emptyline(str) == FALSE))
-		{
-			break ;
-		}
-		str = ft_free(str);
-		str = get_next_line(fd);
-		ft[2]++;
-	}
-	str = ft_free(str);
-	close(fd);
-	return (ft_check_file_check(state, img, ft[2]));
 }
 
 int	ft_is_map(char *str)

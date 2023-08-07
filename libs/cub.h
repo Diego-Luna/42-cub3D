@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/06 21:59:28 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 11:03:16 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,12 +130,19 @@ int			ft_check_file(char *file, t_state *state);
 int			ft_check_path(char *file);
 int		ft_is_map(char *str);
 int 	ft_check_map(t_state *state);
+int	ft_check_file_img_color(char *file, t_state *state);
+int	ft_check_file_img(char *str, int *img);
+int	ft_check_file_color(char *str, int *img);
+int	ft_check_file_check(t_state *state, int *img, int line);
 void	ft_map_validity(t_state *state, void (*f)(t_state *, char, size_t,
 			size_t));
 
 // Save data
 void		ft_save_data(t_state *state, char *file);
 void		ft_print_map(t_state *state);
+void	ft_save_data(t_state *state, char *file);
+void	ft_save_map(t_state *state, char *file);
+void	ft_get_map_heigth(t_state *state, char *file);
 
 // Error
 void		ft_error_print(char *str, t_state *state);

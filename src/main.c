@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/02 18:55:16 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/07 11:08:18 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		ft_print_map(t_state *state){
 	while (state->map.map[i])
 	{
 		printf("\n ->{%s} w{%zu}", state->map.map[i], ft_strlen(state->map.map[i]));
-		// printf("\n '%s' '%i' w{%zu}", state->map.map[i], i, ft_strlen(state->map.map[i]));
 		i++;
 	}
 	printf("\n -> map.width{%zu}", state->map.width);
