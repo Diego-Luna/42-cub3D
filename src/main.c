@@ -6,34 +6,33 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 11:10:27 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 11:10:44 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libs/cub.h"
 
-void		ft_print_map(t_state *state){
-	int i;
+void	ft_print_map(t_state *state)
+{
+	int	i;
 
 	i = 0;
 	printf("\n\n --> map <--");
 	while (state->map.map[i])
 	{
-		printf("\n ->{%s} w{%zu}", state->map.map[i], ft_strlen(state->map.map[i]));
+		printf("\n ->{%s} w{%zu}", state->map.map[i],
+			ft_strlen(state->map.map[i]));
 		i++;
 	}
 	printf("\n -> map.width{%zu}", state->map.width);
 	printf("\n -> map.height{%zu}", state->map.height);
 	printf("\n --> map <--\n\n");
-
-
 	printf("\n\n --> Path <--");
 	printf("\n -> Path WE {%s}", state->map.path_we);
 	printf("\n -> Path SO {%s}", state->map.path_so);
 	printf("\n -> Path NO {%s}", state->map.path_no);
 	printf("\n -> Path EA {%s}", state->map.path_ea);
 	printf("\n\n --> Path <--");
-
 	printf("\n\n --> Color <--");
 	printf("\n -> COLOR C {%s}", state->map.c_color.s_color);
 	printf("\n -> COLOR F {%s}", state->map.f_color.s_color);

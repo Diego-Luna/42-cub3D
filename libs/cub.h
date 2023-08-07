@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 11:03:16 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 11:57:44 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,23 @@ typedef struct s_raycasting{
 	double rayDirX; //direction of ray on x-axis
 	double rayDirY; //direction of ray on y-axis
 	mlx_image_t *g_img;
+	int mapX;
+	int mapY;
+	double sideDistX;
+	double sideDistY;
+	double deltaDistX;
+	double deltaDistY;
+	double perpWallDist;
+	int stepX;
+	int stepY;
+	int side;
+	int lineHeight;
+	int drawStart;
+	int drawEnd;
+	double cellSize;
+	double wallX;
+	int texX;
+	int texY;
 } t_raycasting;
 
 typedef struct s_map
