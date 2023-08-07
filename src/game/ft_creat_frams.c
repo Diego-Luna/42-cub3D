@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_creat_frams.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 21:14:08 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/06 21:54:49 by diegofranci      ###   ########.fr       */
+/*   Created: 2023/08/07 16:14:35 by dluna-lo          #+#    #+#             */
+/*   Updated: 2023/08/07 16:14:36 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

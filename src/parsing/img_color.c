@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img_color.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 10:47:20 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/07 10:52:20 by diegofranci      ###   ########.fr       */
+/*   Created: 2023/08/07 16:13:56 by dluna-lo          #+#    #+#             */
+/*   Updated: 2023/08/07 16:13:56 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 11:10:44 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 16:23:16 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	ft_init_state(t_state *state)
 {
 	ft_init_state_map(state);
 	ft_init_state_game(state);
-	state->ray.dirY = 0;
-	state->ray.dirX = 1;
-	state->ray.planeX = 0;
-	state->ray.planeY = 0.66;
+	state->ray.dir_y = 0;
+	state->ray.dir_x = 1;
+	state->ray.plane_x = 0;
+	state->ray.plane_y = 0.66;
 	state->ray.time = 0;
-	state->ray.oldTime = 0;
+	state->ray.old_time = 0;
 	state->ray.g_img = NULL;
 }
 

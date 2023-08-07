@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 11:05:34 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 16:56:45 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
 		state->map.direccion = c;
 		state->player.x = (double)x;
 		state->player.y = (double)y;
-		printf("\n Diego -> save x{%zu} y{%zu} maxX{%zu} maxY{%zu}", x, y,
-			state->map.width, state->map.height);
 		if (c == 'N')
 			state->player.angle = DIRECCION_NO;
 		if (c == 'W')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_heigth.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 10:59:16 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/07 10:59:31 by diegofranci      ###   ########.fr       */
+/*   Created: 2023/08/07 16:14:00 by dluna-lo          #+#    #+#             */
+/*   Updated: 2023/08/07 16:14:01 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

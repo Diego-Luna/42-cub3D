@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/06 21:48:11 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 16:22:57 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	ft_change_degree_radias(t_state *state, double radias)
 	double	old_dir_x;
 	double	old_plane_x;
 
-	old_dir_x = state->ray.dirX;
-	state->ray.dirX = state->ray.dirX * cos(radias) - state->ray.dirY
+	old_dir_x = state->ray.dir_x;
+	state->ray.dir_x = state->ray.dir_x * cos(radias) - state->ray.dir_y
 		* sin(radias);
-	state->ray.dirY = old_dir_x * sin(radias) + state->ray.dirY * cos(radias);
-	old_plane_x = state->ray.planeX;
-	state->ray.planeX = state->ray.planeX * cos(radias) - state->ray.planeY
+	state->ray.dir_y = old_dir_x * sin(radias) + state->ray.dir_y * cos(radias);
+	old_plane_x = state->ray.plane_x;
+	state->ray.plane_x = state->ray.plane_x * cos(radias) - state->ray.plane_y
 		* sin(radias);
-	state->ray.planeY = old_plane_x * sin(radias) + state->ray.planeY
+	state->ray.plane_y = old_plane_x * sin(radias) + state->ray.plane_y
 		* cos(radias);
 }
 
@@ -51,8 +51,8 @@ int	ft_movent_posiblel_ws(t_state *state, int redreccion, double movent_speed)
 	double	x;
 	double	y;
 
-	x = state->player.x + (redreccion) * state->ray.dirX * movent_speed;
-	y = state->player.y + (redreccion) * state->ray.dirY * movent_speed;
+	x = state->player.x + (redreccion) * state->ray.dir_x * movent_speed;
+	y = state->player.y + (redreccion) * state->ray.dir_y * movent_speed;
 	if (x >= (double)state->map.width - 2 || x < 1)
 		return (0);
 	if (y >= (double)state->map.height - 1 || y < 1)
@@ -69,8 +69,8 @@ int	ft_movent_posiblel_ad(t_state *state, int redreccion, double movent_speed)
 	double	x;
 	double	y;
 
-	x = state->player.x + (redreccion) * state->ray.dirY * movent_speed;
-	y = state->player.y - (redreccion) * state->ray.dirX * movent_speed;
+	x = state->player.x + (redreccion) * state->ray.dir_y * movent_speed;
+	y = state->player.y - (redreccion) * state->ray.dir_x * movent_speed;
 	if (x >= (double)state->map.width - 2 || x < 1)
 		return (0);
 	if (y >= (double)state->map.height - 1 || y < 1)

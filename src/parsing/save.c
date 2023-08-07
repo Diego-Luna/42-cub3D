@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 11:00:31 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/07 11:06:54 by diegofranci      ###   ########.fr       */
+/*   Created: 2023/08/07 16:13:35 by dluna-lo          #+#    #+#             */
+/*   Updated: 2023/08/07 16:13:38 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

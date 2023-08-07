@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 21:46:09 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/06 21:58:38 by diegofranci      ###   ########.fr       */
+/*   Created: 2023/08/07 16:14:24 by dluna-lo          #+#    #+#             */
+/*   Updated: 2023/08/07 16:22:57 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ void	my_keyhook_rotate_right(t_state *state, mlx_key_data_t keydata,
 	if ((keydata.action == MLX_PRESS || state->game.key == 5)
 		&& keydata.key == MLX_KEY_LEFT)
 	{
-		old_dir_x = state->ray.dirX;
-		state->ray.dirX = state->ray.dirX * cos(-rot_speed) - state->ray.dirY
+		old_dir_x = state->ray.dir_x;
+		state->ray.dir_x = state->ray.dir_x * cos(-rot_speed) - state->ray.dir_y
 			* sin(-rot_speed);
-		state->ray.dirY = old_dir_x * sin(-rot_speed) + state->ray.dirY
+		state->ray.dir_y = old_dir_x * sin(-rot_speed) + state->ray.dir_y
 			* cos(-rot_speed);
-		old_plane_x = state->ray.planeX;
-		state->ray.planeX = state->ray.planeX * cos(-rot_speed)
-			- state->ray.planeY * sin(-rot_speed);
-		state->ray.planeY = old_plane_x * sin(-rot_speed) + state->ray.planeY
+		old_plane_x = state->ray.plane_x;
+		state->ray.plane_x = state->ray.plane_x * cos(-rot_speed)
+			- state->ray.plane_y * sin(-rot_speed);
+		state->ray.plane_y = old_plane_x * sin(-rot_speed) + state->ray.plane_y
 			* cos(-rot_speed);
 		state->game.key = 5;
 	}
@@ -73,15 +73,15 @@ void	my_keyhook_rotate_left(t_state *state, mlx_key_data_t keydata,
 	if ((keydata.action == MLX_PRESS || state->game.key == 6)
 		&& keydata.key == MLX_KEY_RIGHT)
 	{
-		old_dir_x = state->ray.dirX;
-		state->ray.dirX = state->ray.dirX * cos(rot_speed) - state->ray.dirY
+		old_dir_x = state->ray.dir_x;
+		state->ray.dir_x = state->ray.dir_x * cos(rot_speed) - state->ray.dir_y
 			* sin(rot_speed);
-		state->ray.dirY = old_dir_x * sin(rot_speed) + state->ray.dirY
+		state->ray.dir_y = old_dir_x * sin(rot_speed) + state->ray.dir_y
 			* cos(rot_speed);
-		old_plane_x = state->ray.planeX;
-		state->ray.planeX = state->ray.planeX * cos(rot_speed)
-			- state->ray.planeY * sin(rot_speed);
-		state->ray.planeY = old_plane_x * sin(rot_speed) + state->ray.planeY
+		old_plane_x = state->ray.plane_x;
+		state->ray.plane_x = state->ray.plane_x * cos(rot_speed)
+			- state->ray.plane_y * sin(rot_speed);
+		state->ray.plane_y = old_plane_x * sin(rot_speed) + state->ray.plane_y
 			* cos(rot_speed);
 		state->game.key = 6;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/06 21:10:43 by diegofranci       #+#    #+#             */
-/*   Updated: 2023/08/07 10:47:37 by diegofranci      ###   ########.fr       */
+/*   Created: 2023/08/07 16:14:40 by dluna-lo          #+#    #+#             */
+/*   Updated: 2023/08/07 16:22:23 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	my_keyhook_below(t_state *state, mlx_key_data_t keydata,
 		&& state->player.x - 1 >= 0 && ft_movent_posiblel_ws(state, -1,
 			movent_speed) == 1)
 	{
-		state->player.x = state->player.x + (-1) * state->ray.dirX
+		state->player.x = state->player.x + (-1) * state->ray.dir_x
 			* movent_speed;
-		state->player.y = state->player.y + (-1) * state->ray.dirY
+		state->player.y = state->player.y + (-1) * state->ray.dir_y
 			* movent_speed;
 		state->game.key = 2;
 	}
@@ -38,9 +38,9 @@ void	my_keyhook_above(t_state *state, mlx_key_data_t keydata,
 		&& state->player.x + 1 < state->map.width
 		&& ft_movent_posiblel_ws(state, 1, movent_speed) == 1)
 	{
-		state->player.x = state->player.x + (1) * state->ray.dirX
+		state->player.x = state->player.x + (1) * state->ray.dir_x
 			* movent_speed;
-		state->player.y = state->player.y + (1) * state->ray.dirY
+		state->player.y = state->player.y + (1) * state->ray.dir_y
 			* movent_speed;
 		state->game.key = 1;
 	}
@@ -53,9 +53,9 @@ void	my_keyhook_right(t_state *state, mlx_key_data_t keydata,
 		&& keydata.key == MLX_KEY_D && state->player.y + 1 < state->map.height
 		&& ft_movent_posiblel_ad(state, -1, movent_speed) == 1)
 	{
-		state->player.x = state->player.x + (-1) * state->ray.dirY
+		state->player.x = state->player.x + (-1) * state->ray.dir_y
 			* movent_speed;
-		state->player.y = state->player.y - (-1) * state->ray.dirX
+		state->player.y = state->player.y - (-1) * state->ray.dir_x
 			* movent_speed;
 		state->game.key = 3;
 	}
@@ -68,9 +68,9 @@ void	my_keyhook_left(t_state *state, mlx_key_data_t keydata,
 		&& keydata.key == MLX_KEY_A && state->player.y - 1 >= 0
 		&& ft_movent_posiblel_ad(state, 1, movent_speed) == 1)
 	{
-		state->player.x = state->player.x + (1) * state->ray.dirY
+		state->player.x = state->player.x + (1) * state->ray.dir_y
 			* movent_speed;
-		state->player.y = state->player.y - (1) * state->ray.dirX
+		state->player.y = state->player.y - (1) * state->ray.dir_x
 			* movent_speed;
 		state->game.key = 4;
 	}
