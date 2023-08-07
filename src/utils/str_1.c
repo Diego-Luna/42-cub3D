@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 11:11:50 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/07/22 13:23:23 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/06 19:28:44 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,56 +56,6 @@ int	ft_str_equals(char *str_1, char *str_2)
 	return (TRUE);
 }
 
-// void	ft_cut_word_utils_1(size_t *start, size_t i, size_t *end)
-// {
-// 	start = &i;
-// 	end = 0;
-// }
-
-// void	ft_cut_word_utils_2(int *nu, size_t i, size_t *end)
-// {
-// 	end = &i;
-// 	nu--;
-// }
-
-char	*ft_cut_word(char *str, char cut, int number)
-{
-	size_t	i;
-	size_t	start;
-	size_t	end;
-	int		word;
-
-	i = 0;
-	start = 0;
-	end = 0;
-	word = FALSE;
-	if (number <= 0)
-		return (NULL);
-	while (str[i])
-	{
-		if (word == FALSE && str[i] != cut && number > 0)
-		{
-			start = i;
-			word = TRUE;
-		}
-		if (word == TRUE && (str[i] == cut || str[i] == '\n') && number > 0)
-		{
-			end = i;
-			word = FALSE;
-			number--;
-		}
-		i++;
-	}
-	if (word == TRUE)
-	{
-		end = i;
-		number--;
-	}
-	if (number != 0)
-		return (NULL);
-	return (ft_substr(str, start, end - start));
-}
-
 int	ft_count_words(char *str, char cut)
 {
 	size_t	i;
@@ -131,9 +81,9 @@ int	ft_count_words(char *str, char cut)
 	return (number);
 }
 
-int			ft_str_is_number(char *str)
+int	ft_str_is_number(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])

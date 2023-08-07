@@ -6,7 +6,7 @@
 #    By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/08/02 21:04:31 by diegofranci      ###   ########.fr        #
+#    Updated: 2023/08/06 21:48:36 by diegofranci      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,9 @@ SUBDIRS		= game \
 						utils
 
 SRCS = src/main.c src/parsing/ft_check_file.c src/parsing/save_data.c \
-				src/utils/Error.c src/utils/str_1.c src/game/game.c \
-				src/raycasting/raycasting.c
+				src/utils/Error.c src/utils/str_1.c src/utils/str_2.c src/game/game.c \
+				src/raycasting/raycasting.c src/game/control.c src/game/ft_creat_frams.c \
+				src/game/color.c src/game/utils.c
 
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
 

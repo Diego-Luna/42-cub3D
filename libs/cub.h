@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/02 16:57:33 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/06 21:59:28 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,19 @@ int			ft_count_words(char *str, char cut);
 int			ft_str_is_number(char *str);
 
 // Game
+void	ft_rendering(void *param);
 void ft_run_game(t_state *state);
 void ft_init_game(t_state *state);
+void	ft_creat_frams(t_state *state);
 int get_rgba(int r, int g, int b, int a);
+void	my_keyhook(mlx_key_data_t keydata, void *param);
+void	ft_change_full_color(mlx_image_t *image, int r, int g, int b);
+void	my_keyhook_rotate_left(t_state *state, mlx_key_data_t keydata,
+		double rot_speed);
+void	my_keyhook_rotate_right(t_state *state, mlx_key_data_t keydata,
+		double rot_speed);
+int	ft_movent_posiblel_ws(t_state *state, int redreccion, double movent_speed);
+int	ft_movent_posiblel_ad(t_state *state, int redreccion, double movent_speed);
 
 // raycasting
 void  ft_raycasting(t_state *state);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:12:20 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/02 17:45:14 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/06 18:56:01 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	ft_free_state(t_state *state)
 	ft_free(state->map.f_color.s_color);
 	ft_free(state->map.c_color.s_color);
 	ft_free_table(state->map.map);
-
 	if (state->game.tex_no)
 		mlx_delete_texture(state->game.tex_no);
 	if (state->game.tex_so)
@@ -81,13 +80,4 @@ void	ft_free_state(t_state *state)
 		mlx_delete_texture(state->game.tex_we);
 	if (state->game.tex_ea)
 		mlx_delete_texture(state->game.tex_ea);
-
-	// if (state->game.img_no)
-	// 	mlx_delete_image(state->game.mlx, state->game.img_no);
-	// if (state->game.img_so)
-	// 	mlx_delete_image(state->game.mlx, state->game.img_so);
-	// if (state->game.img_we)
-	// 	mlx_delete_image(state->game.mlx, state->game.img_we);
-	// if (state->game.img_ea)
-	// 	mlx_delete_image(state->game.mlx, state->game.img_ea);
 }
