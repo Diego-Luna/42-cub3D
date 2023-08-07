@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:22:57 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:16:06 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void	ft_init_game(t_state *state)
 
 	game = &state->game;
 	if (state->map.direccion == 'N')
-		ft_change_degree_radias(state, 4.71239);
-	if (state->map.direccion == 'S')
 		ft_change_degree_radias(state, 1.5708);
+	if (state->map.direccion == 'S')
+		ft_change_degree_radias(state, 4.71239);
+	if (state->map.direccion == 'E')
+		ft_change_degree_radias(state, 0);
 	if (state->map.direccion == 'W')
 		ft_change_degree_radias(state, 3.14159);
 	game->height = HEIGHT;

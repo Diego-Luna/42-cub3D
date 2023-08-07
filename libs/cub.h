@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:54:48 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:42:59 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ int					ft_movent_posiblel_ws(t_state *state, int redreccion,
 						double movent_speed);
 int					ft_movent_posiblel_ad(t_state *state, int redreccion,
 						double movent_speed);
+void				ft_position_player(t_state *state, char c);
 
 // raycasting
 void				ft_raycasting(t_state *state);

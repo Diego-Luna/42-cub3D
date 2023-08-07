@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:56:45 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:36:52 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_is_map_close(t_recursive *info, int x, int y)
 
 void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
 {
-	(void)c;
 	if (state->map.direccion != '\0' && (c == 'N' || c == 'S' || c == 'W'
 			|| c == 'E'))
 		ft_error_print("Error no Map valid, repeat USER 🤯", state);
@@ -54,6 +53,7 @@ void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
 			state->player.angle = DIRECCION_SO;
 		if (c == 'E')
 			state->player.angle = DIRECCION_EA;
+		ft_position_player(state, c);
 	}
 }
 

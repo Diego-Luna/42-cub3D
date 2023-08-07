@@ -1,13 +1,13 @@
-WE ./assets/beach.png
-SO ./assets/cofee.png
 NO ./assets/computer.png
-EA ./assets/small.png
+SO ./assets/cofee.png
+WE ./assets/beach.png
+EA ./assets/skay.png
 
 C 150,150,150
 F 255,255,255
 
 11111
-10001
-10N01
-10001
+10101
+11E11
+10101
 11111
