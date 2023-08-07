@@ -6,7 +6,7 @@
 /*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 11:08:18 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 11:10:27 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,10 @@ void		ft_print_map(t_state *state){
 	printf("\n --> Color <--\n\n");
 }
 
-void	ft_init_map(t_state *state)
+void	ft_init_state_game(t_state *state)
 {
-	state->map.path_no = NULL;
-	state->map.path_so = NULL;
-	state->map.path_we = NULL;
-	state->map.path_ea = NULL;
 	state->game.sky = NULL;
 	state->game.floor = NULL;
-
 	state->game.tex_no = NULL;
 	state->game.img_no = NULL;
 	state->game.tex_so = NULL;
@@ -57,13 +52,25 @@ void	ft_init_map(t_state *state)
 	state->game.img_we = NULL;
 	state->game.tex_ea = NULL;
 	state->game.img_ea = NULL;
+	state->game.key = 0;
+}
 
+void	ft_init_state_map(t_state *state)
+{
+	state->map.path_no = NULL;
+	state->map.path_so = NULL;
+	state->map.path_we = NULL;
+	state->map.path_ea = NULL;
 	state->map.f_color.s_color = NULL;
 	state->map.c_color.s_color = NULL;
 	state->map.direccion = '\0';
 	state->map.map = NULL;
-	state->game.key = 0;
+}
 
+void	ft_init_state(t_state *state)
+{
+	ft_init_state_map(state);
+	ft_init_state_game(state);
 	state->ray.dirY = 0;
 	state->ray.dirX = 1;
 	state->ray.planeX = 0;
@@ -79,7 +86,7 @@ int32_t	main(int argc, char *argv[])
 
 	(void)argc;
 	(void)argv;
-	ft_init_map(&state);
+	ft_init_state(&state);
 	if (argc != 2 || !ft_check_file(argv[1], &state))
 		ft_error_print("error in file ", &state);
 	ft_save_data(&state, argv[1]);
