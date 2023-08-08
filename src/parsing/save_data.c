@@ -3,36 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   save_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 17:36:52 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/08 13:52:55 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libs/cub.h"
 
-void	ft_is_map_close(t_recursive *info, int x, int y)
+// void	ft_is_map_close(t_recursive *info, int x, int y)
+int	ft_is_map_close(t_recursive *info, int x, int y)
 {
-	if (x >= info->x_max || x == 0 || y >= info->y_max || y < 0)
+	char old;
+	if (x >= info->x_max || x < 0 || y >= info->y_max || y < 0)
 	{
-		return ;
+		return (1);
 	}
 	if (info->map[y][x] == ' ')
 	{
 		info->map[y][x] = 'X';
 		info->is_path_exit++;
-		return ;
+		return (0);
 	}
 	if (info->map[y][x] == '1' || info->map[y][x] == 'X')
 	{
-		return ;
+		return 0;
 	}
+	old = info->map[y][x];
 	info->map[y][x] = 'X';
-	ft_is_map_close(info, x, y - 1);
-	ft_is_map_close(info, x, y + 1);
-	ft_is_map_close(info, x + 1, y);
-	ft_is_map_close(info, x - 1, y);
+	if (ft_is_map_close(info, x, y - 1) == 1 && old == '0')
+		info->is_path_exit++;
+	if (ft_is_map_close(info, x, y + 1) == 1 && old == '0')
+		info->is_path_exit++;
+	if (ft_is_map_close(info, x + 1, y) == 1 && old == '0')
+		info->is_path_exit++;
+	if (ft_is_map_close(info, x - 1, y) == 1 && old == '0')
+		info->is_path_exit++;
+	return (0);
 }
 
 void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
@@ -99,6 +107,7 @@ int	ft_check_map(t_state *state)
 	int			i;
 
 	ft_map_validity(state, ft_is_map_repeat);
+
 	ft_print_map(state);
 	info.map = ft_duplicate_table(state, state->map.map, state->map.height);
 	info.is_path_exit = 0;
@@ -106,12 +115,14 @@ int	ft_check_map(t_state *state)
 	info.y_max = state->map.height;
 	ft_is_map_close(&info, state->player.x, state->player.y);
 	i = 0;
-	while (info.map[i])
+	while (state->map.map[i])
 	{
-		printf("\n 🎩 {%s}", info.map[i]);
+		if(ft_strlen(state->map.map[i]) == 0)
+			ft_error_print("Error in map no close", state);
 		i++;
 	}
 	ft_free_table(info.map);
+	printf("\n 🦾 {%d} \n", info.is_path_exit);
 	if (info.is_path_exit > 0)
 		ft_error_print("Error in map no close", state);
 	return (TRUE);

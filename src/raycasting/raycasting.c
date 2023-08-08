@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:12 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:56:10 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:58:17 by diegofranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_start_textura(t_state *state)
 	double	cell_size_x;
 	double	cell_size_y;
 
-	cell_size_x = WINDOW_W / (double)state->map.width;
-	cell_size_y = WINDOW_H / (double)state->map.height;
+	cell_size_x = WINDOW_W / 1;
+	cell_size_y = WINDOW_H / 1;
 	state->ray.cell_size = fmin(cell_size_x, cell_size_y);
 	if (state->ray.side == SIDE_N)
 		mlx_resize_image(state->game.img_no, state->ray.cell_size,
