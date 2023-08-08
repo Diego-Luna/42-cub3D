@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 17:01:39 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:29:07 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_init_game(t_state *state)
 		ft_change_degree_radias(state, 3.14159);
 	game->height = HEIGHT;
 	game->width = WIDTH;
-	game->mlx = mlx_init(WINDOW_W, WINDOW_H, "CUB3D", TRUE);
+	game->mlx = mlx_init(WINDOW_W, WINDOW_H, "cub3D", TRUE);
 	if (!game->mlx)
 		ft_error_print("Error in MLX", state);
 }

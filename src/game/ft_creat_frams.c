@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:14:35 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 17:02:24 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:31:55 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,15 @@ void	ft_creat_frams(t_state *state)
 		map->f_color.b);
 	ft_create_texture(state);
 	ft_create_img(state);
-	mlx_resize_image(game->img_no, game->width, game->height);
-	mlx_resize_image(game->img_so, game->width, game->height);
-	mlx_resize_image(game->img_we, game->width, game->height);
-	mlx_resize_image(game->img_ea, game->width, game->height);
+	mlx_resize_image(game->img_no, WINDOW_W, WINDOW_H);
+	mlx_resize_image(game->img_so, WINDOW_W, WINDOW_H);
+	mlx_resize_image(game->img_we, WINDOW_W, WINDOW_H);
+	mlx_resize_image(game->img_ea, WINDOW_W, WINDOW_H);
+	// mlx_resize_image(game->img_no, game->width, game->height);
+	// mlx_resize_image(game->img_so, game->width, game->height);
+	// mlx_resize_image(game->img_we, game->width, game->height);
+	// mlx_resize_image(game->img_ea, game->width, game->height);
+	printf("\n ⛑ img_we->width{%d}, img_ea->width{%d} img_so->width{%d} img_no->width{%d}", state->game.img_we->width, state->game.img_ea->width, state->game.img_so->width, state->game.img_no->width);
 	if (mlx_image_to_window(game->mlx, game->sky, 0, 0) == -1)
 		ft_error_print("Error displaying the image", state);
 	if (mlx_image_to_window(game->mlx, game->floor, 0, WINDOW_H / 2) == -1)

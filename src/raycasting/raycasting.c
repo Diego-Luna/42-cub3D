@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:12 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 16:55:16 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/08 19:47:56 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,27 @@ void	ft_start_textura(t_state *state)
 
 	cell_size_x = WINDOW_W / 1;
 	cell_size_y = WINDOW_H / 1;
+	// state->ray.cell_size = cell_size_x;
 	state->ray.cell_size = fmin(cell_size_x, cell_size_y);
+	mlx_resize_image(state->game.img_no, state->ray.cell_size, state->game.height);
 	if (state->ray.side == SIDE_N)
-		mlx_resize_image(state->game.img_no, state->ray.cell_size,
-			state->game.height);
+	{
+		mlx_resize_image(state->game.img_no, state->ray.cell_size, state->game.height);
+	}
 	if (state->ray.side == SIDE_S)
-		mlx_resize_image(state->game.img_so, state->ray.cell_size,
-			state->game.height);
+	{
+		mlx_resize_image(state->game.img_so, state->ray.cell_size, state->game.height);
+	}
 	if (state->ray.side == SIDE_W)
-		mlx_resize_image(state->game.img_we, state->ray.cell_size,
-			state->game.height);
+	{
+		mlx_resize_image(state->game.img_we, state->ray.cell_size, state->game.height);
+	}
 	if (state->ray.side == SIDE_E)
-		mlx_resize_image(state->game.img_ea, state->ray.cell_size,
-			state->game.height);
+	{
+		mlx_resize_image(state->game.img_ea, state->ray.cell_size, state->game.height);
+	}
 	if (state->ray.side % 2 == 0)
-		state->ray.wall_x = state->player.y + state->ray.perp_wall_dist
-			* state->ray.ray_dir_y;
+		state->ray.wall_x = state->player.y + state->ray.perp_wall_dist * state->ray.ray_dir_y;
 	else
 		state->ray.wall_x = state->player.x + state->ray.perp_wall_dist
 			* state->ray.ray_dir_x;
@@ -45,25 +50,30 @@ void	ft_textura_calculation(t_state *state)
 	state->ray.wall_x -= floor(state->ray.wall_x);
 	state->ray.tex_x = (int)(state->ray.wall_x * state->ray.cell_size);
 	if (state->ray.side % 2 == 0 && state->ray.ray_dir_x > 0)
-		state->ray.tex_x = state->game.img_no->height - state->ray.tex_x - 1;
+		state->ray.tex_x = state->game.img_ea->height - state->ray.tex_x - 1;
 	if (state->ray.side % 2 != 0 && state->ray.ray_dir_y < 0)
-		state->ray.tex_x = state->game.img_no->height - state->ray.tex_x - 1;
+		state->ray.tex_x = state->game.img_ea->height - state->ray.tex_x - 1;
 }
 
 uint32_t	ft_select_texture(t_state *state)
 {
+	// printf("\n ⛑⛑⛑ img_we->width{%d}, img_ea->width{%d} img_so->width{%d} img_no->width{%d}", state->game.img_we->width, state->game.img_ea->width, state->game.img_so->width, state->game.img_no->width);
+	// printf("\n ⛑⛑ img_we->height{%d}, img_ea->height{%d} img_so->height{%d} img_no->height{%d}", state->game.img_we->height, state->game.img_ea->height, state->game.img_so->height, state->game.img_no->height);
 	if (state->ray.side == SIDE_W)
 		return (((uint32_t *)state->game.img_we->pixels)[state->ray.tex_x
 			+ state->ray.tex_y * state->game.img_we->width]);
 	if (state->ray.side == SIDE_E)
+	{
 		return (((uint32_t *)state->game.img_ea->pixels)[state->ray.tex_x
 			+ state->ray.tex_y * state->game.img_ea->width]);
+	}
 	if (state->ray.side == SIDE_S)
 		return (((uint32_t *)state->game.img_so->pixels)[state->ray.tex_x
 			+ state->ray.tex_y * state->game.img_so->width]);
 	if (state->ray.side == SIDE_N)
 		return (((uint32_t *)state->game.img_no->pixels)[state->ray.tex_x
 			+ state->ray.tex_y * state->game.img_no->width]);
+
 	return (get_rgba(255, 255, 255, 255));
 }
 
@@ -79,12 +89,12 @@ void	ft_place_texture(t_state *state, int x)
 	uint32_t	color;
 
 	y = state->ray.draw_start;
-	step = 1.0 * (state->game.img_no->height) / state->ray.line_height;
+	step = 1.0 * (state->game.img_ea->height) / state->ray.line_height;
 	tex_pos = (state->ray.draw_start - WINDOW_H / 2 + state->ray.line_height
 			/ 2) * step;
 	while (y < state->ray.draw_end)
 	{
-		state->ray.tex_y = (int)tex_pos & ((state->game.img_no->height) - 1);
+		state->ray.tex_y = (int)tex_pos & ((state->game.img_ea->height) - 1);
 		tex_pos += step;
 		color = ft_select_texture(state);
 		color = get_rgba((color & 0x000000FF), ((color & 0x0000FF00) >> 8),
