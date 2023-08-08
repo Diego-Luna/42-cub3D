@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nomu <nomu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:12 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 19:49:20 by nomu             ###   ########.fr       */
+/*   Updated: 2023/08/08 16:55:16 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ uint32_t	ft_select_texture(t_state *state)
 	return (get_rgba(255, 255, 255, 255));
 }
 
-//texturing calculations
+// texturing calculations
 // Starting texture coordinate
 // Cast the texture coordinate to integer, and mask with (texHeight
 // - 1) in case of overflow
@@ -80,15 +80,15 @@ void	ft_place_texture(t_state *state, int x)
 
 	y = state->ray.draw_start;
 	step = 1.0 * (state->game.img_no->height) / state->ray.line_height;
-	tex_pos = (state->ray.draw_start - WINDOW_H / 2
-			+ state->ray.line_height / 2) * step;
+	tex_pos = (state->ray.draw_start - WINDOW_H / 2 + state->ray.line_height
+			/ 2) * step;
 	while (y < state->ray.draw_end)
 	{
 		state->ray.tex_y = (int)tex_pos & ((state->game.img_no->height) - 1);
 		tex_pos += step;
 		color = ft_select_texture(state);
-		// color = get_rgba((color << 8), (color << 16), (color << 24 & 0xFF), 255);
-		color = get_rgba((color & 0x000000FF), ((color & 0x0000FF00) >> 8), ((color & 0x00FF0000) >> 16), 255);
+		color = get_rgba((color & 0x000000FF), ((color & 0x0000FF00) >> 8),
+				((color & 0x00FF0000) >> 16), 255);
 		mlx_put_pixel(state->ray.g_img, x, y, color);
 		y++;
 	}

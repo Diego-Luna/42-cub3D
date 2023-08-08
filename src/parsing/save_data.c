@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   save_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 13:52:55 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/08 16:54:06 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libs/cub.h"
 
-// void	ft_is_map_close(t_recursive *info, int x, int y)
 int	ft_is_map_close(t_recursive *info, int x, int y)
 {
-	char old;
+	char	old;
+
 	if (x >= info->x_max || x < 0 || y >= info->y_max || y < 0)
-	{
 		return (1);
-	}
 	if (info->map[y][x] == ' ')
 	{
 		info->map[y][x] = 'X';
@@ -28,7 +26,7 @@ int	ft_is_map_close(t_recursive *info, int x, int y)
 	}
 	if (info->map[y][x] == '1' || info->map[y][x] == 'X')
 	{
-		return 0;
+		return (0);
 	}
 	old = info->map[y][x];
 	info->map[y][x] = 'X';
@@ -107,7 +105,6 @@ int	ft_check_map(t_state *state)
 	int			i;
 
 	ft_map_validity(state, ft_is_map_repeat);
-
 	ft_print_map(state);
 	info.map = ft_duplicate_table(state, state->map.map, state->map.height);
 	info.is_path_exit = 0;
@@ -117,7 +114,7 @@ int	ft_check_map(t_state *state)
 	i = 0;
 	while (state->map.map[i])
 	{
-		if(ft_strlen(state->map.map[i]) == 0)
+		if (ft_strlen(state->map.map[i]) == 0)
 			ft_error_print("Error in map no close", state);
 		i++;
 	}
