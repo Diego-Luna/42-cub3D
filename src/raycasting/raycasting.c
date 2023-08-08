@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diegofranciscolunalopez <diegofrancisco    +#+  +:+       +#+        */
+/*   By: nomu <nomu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:12 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 12:58:17 by diegofranci      ###   ########.fr       */
+/*   Updated: 2023/08/07 19:49:20 by nomu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	ft_place_texture(t_state *state, int x)
 		state->ray.tex_y = (int)tex_pos & ((state->game.img_no->height) - 1);
 		tex_pos += step;
 		color = ft_select_texture(state);
-		color = get_rgba(((color >> 16) & 0xFF), ((color >> 8) & 0xFF),
-				(color & 0xFF), 255);
+		// color = get_rgba((color << 8), (color << 16), (color << 24 & 0xFF), 255);
+		color = get_rgba((color & 0x000000FF), ((color & 0x0000FF00) >> 8), ((color & 0x00FF0000) >> 16), 255);
 		mlx_put_pixel(state->ray.g_img, x, y, color);
 		y++;
 	}
