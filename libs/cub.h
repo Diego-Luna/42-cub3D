@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 17:42:59 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/08 16:56:17 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 
 # define WIDTH 512
 # define HEIGHT 512
-// # define BPP sizeof(int32_t)
 
 # define DIRECCION_NO 0
 # define DIRECCION_WE 90
