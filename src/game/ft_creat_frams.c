@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:14:35 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:14:36 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:02:24 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	ft_creat_frams(t_state *state)
 
 	game = &state->game;
 	map = &state->map;
-	game->sky = mlx_new_image(game->mlx, game->width, game->height / 2);
-	game->floor = mlx_new_image(game->mlx, game->width, game->height / 2);
+	game->sky = mlx_new_image(game->mlx, WINDOW_W, WINDOW_H / 2);
+	game->floor = mlx_new_image(game->mlx, WINDOW_W, WINDOW_H / 2);
 	ft_change_full_color(game->sky, map->c_color.r, map->c_color.g,
 		map->c_color.b);
 	ft_change_full_color(game->floor, map->f_color.r, map->f_color.g,
@@ -71,6 +71,6 @@ void	ft_creat_frams(t_state *state)
 	mlx_resize_image(game->img_ea, game->width, game->height);
 	if (mlx_image_to_window(game->mlx, game->sky, 0, 0) == -1)
 		ft_error_print("Error displaying the image", state);
-	if (mlx_image_to_window(game->mlx, game->floor, 0, game->height / 2) == -1)
+	if (mlx_image_to_window(game->mlx, game->floor, 0, WINDOW_H / 2) == -1)
 		ft_error_print("Error displaying the image", state);
 }
