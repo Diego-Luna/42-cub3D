@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:56 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:13:56 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:27:17 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_check_file_img_color(char *file, t_state *state)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error_print("File not exists", state);
+		ft_error_print("File does not exist", state);
 	str = ft_check_file_img_color_utils_1(img, ft, fd);
 	while (str != NULL)
 	{

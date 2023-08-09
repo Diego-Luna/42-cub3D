@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/09 12:46:14 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:17:24 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int	ft_is_map_close(t_recursive *info, int x, int y)
 		info->is_path_exit++;
 		return (0);
 	}
-	if (info->map[y][x] == '1' || info->map[y][x] == 'X')
-	{
+	if (info->map[y][x] == '1' || info->map[y][x] == 'X'
+		|| info->map[y][x] == 0)
 		return (0);
-	}
 	old = info->map[y][x];
 	info->map[y][x] = 'X';
 	if (ft_is_map_close(info, x, y - 1) == 1 && old == '0')
@@ -85,6 +84,7 @@ void	ft_map_validity(t_state *state, void (*f)(t_state *, char, size_t,
 char	**ft_duplicate_table(t_state *state, char **map, size_t heith)
 {
 	size_t	i;
+	size_t	ii;
 	char	**new;
 
 	i = 0;
@@ -93,7 +93,13 @@ char	**ft_duplicate_table(t_state *state, char **map, size_t heith)
 		ft_error_print("Error in malloc", state);
 	while (i < heith)
 	{
-		new[i] = ft_strdup(map[i]);
+		new[i] = ft_calloc(state->map.width + 1, sizeof(char));
+		ii = 0;
+		while (new[i][ii])
+		{
+			new[i][ii] = map[i][ii];
+			ii++;
+		}
 		i++;
 	}
 	return (new);

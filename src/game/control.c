@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:14:40 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:22:23 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:19:59 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_keyhook_below(t_state *state, mlx_key_data_t keydata,
 		double movent_speed)
 {
 	if ((keydata.action == MLX_PRESS || state->game.key == 2)
-		&& (keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
+		&& (keydata.key == MLX_KEY_S)
 		&& state->player.x - 1 >= 0 && ft_movent_posiblel_ws(state, -1,
 			movent_speed) == 1)
 	{
@@ -34,7 +34,7 @@ void	my_keyhook_above(t_state *state, mlx_key_data_t keydata,
 	if (keydata.key == MLX_KEY_ESCAPE)
 		ft_error_print(NULL, state);
 	if (((keydata.action == MLX_PRESS || state->game.key == 1))
-		&& (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
+		&& (keydata.key == MLX_KEY_W)
 		&& state->player.x + 1 < state->map.width
 		&& ft_movent_posiblel_ws(state, 1, movent_speed) == 1)
 	{
