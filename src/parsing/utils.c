@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 17:41:47 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:34:09 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	ft_position_player(t_state *state, char c)
 	}
 	if (c == 'W')
 	{
-		state->player.y -= 0.5;
-		state->player.x -= 0.5;
+		state->player.y += 0.5;
+		state->player.x += 0.5;
 	}
 	if (c == 'S')
 	{

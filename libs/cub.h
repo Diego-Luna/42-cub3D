@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 17:02:51 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:38:09 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define SIDE_E 4
 
 # define WINDOW_W 500
-# define WINDOW_H 1000
+# define WINDOW_H 500
 
 typedef struct s_color
 {

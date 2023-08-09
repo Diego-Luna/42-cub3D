@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 16:54:06 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:46:14 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ int	ft_check_map(t_state *state)
 	int			i;
 
 	ft_map_validity(state, ft_is_map_repeat);
-	ft_print_map(state);
 	info.map = ft_duplicate_table(state, state->map.map, state->map.height);
 	info.is_path_exit = 0;
 	info.x_max = state->map.width;
@@ -115,12 +114,11 @@ int	ft_check_map(t_state *state)
 	while (state->map.map[i])
 	{
 		if (ft_strlen(state->map.map[i]) == 0)
-			ft_error_print("Error in map no close", state);
+			ft_error_print("Error in map no close  1", state);
 		i++;
 	}
 	ft_free_table(info.map);
-	printf("\n 🦾 {%d} \n", info.is_path_exit);
 	if (info.is_path_exit > 0)
-		ft_error_print("Error in map no close", state);
+		ft_error_print("Error in map no close   2", state);
 	return (TRUE);
 }

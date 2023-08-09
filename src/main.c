@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/08 16:59:14 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:49:38 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,7 @@ int32_t	main(int argc, char *argv[])
 		ft_error_print("error in file ", &state);
 	ft_save_data(&state, argv[1]);
 	ft_check_map(&state);
-	ft_print_map(&state);
 	ft_run_game(&state);
-	printf("\n🤟 run 🤟\n");
 	ft_free_state(&state);
 	return (0);
 }
