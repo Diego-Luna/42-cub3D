@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:12 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/09 12:39:24 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:24:21 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_start_textura(t_state *state)
 void	ft_textura_calculation(t_state *state)
 {
 	state->ray.wall_x -= floor(state->ray.wall_x);
-	state->ray.tex_x = (int)(state->ray.wall_x * state->ray.cell_size);
+	state->ray.tex_x = (int)(state->ray.wall_x * state->game.img_no->width);
 	if (state->ray.side % 2 == 0 && state->ray.ray_dir_x > 0)
 		state->ray.tex_x = state->game.img_no->height - state->ray.tex_x - 1;
 	if (state->ray.side % 2 != 0 && state->ray.ray_dir_y < 0)

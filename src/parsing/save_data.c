@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/09 19:17:24 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:33:55 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,11 @@ int	ft_check_map(t_state *state)
 	while (state->map.map[i])
 	{
 		if (ft_strlen(state->map.map[i]) == 0)
-			ft_error_print("Error in map no close  1", state);
+			ft_error_print("Error in map no close", state);
 		i++;
 	}
 	ft_free_table(info.map);
 	if (info.is_path_exit > 0)
-		ft_error_print("Error in map no close   2", state);
+		ft_error_print("Error in map no close", state);
 	return (TRUE);
 }

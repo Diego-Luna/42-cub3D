@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:14:40 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/09 19:19:59 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:30:25 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	double	rot_speed;
 	double	movent_speed;
 
-	rot_speed = 0.05;
-	movent_speed = 0.05;
+	rot_speed = 0.07;
+	movent_speed = 0.07;
 	state = param;
 	my_keyhook_above(state, keydata, movent_speed);
 	my_keyhook_below(state, keydata, movent_speed);

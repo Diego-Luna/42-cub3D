@@ -6,24 +6,11 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:12:26 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/07 16:53:31 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:24:06 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libs/cub.h"
-
-// void	mlx_verLine(mlx_image_t *img, uint32_t x, uint32_t draw_start,
-// 		uint32_t draw_end, uint32_t color)
-// {
-// 	uint32_t	y;
-
-// 	y = draw_start;
-// 	while (y <= draw_end)
-// 	{
-// 		mlx_put_pixel(img, x, y, color);
-// 		y++;
-// 	}
-// }
 
 //calculate ray position and direction
 //which box of the map we're in
@@ -124,5 +111,3 @@ void	ft_distance_camera_direction(t_state *state, int x)
 	if (state->ray.draw_end >= (int)WINDOW_H)
 		state->ray.draw_end = WINDOW_H - 1;
 }
-// mlx_verLine(state->ray.g_img, x, state->ray.draw_start,
-// state->ray.draw_end,	get_rgba(255, 255, 255, 255));

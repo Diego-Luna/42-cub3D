@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/08/09 20:12:20 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/08/10 12:56:57 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ fclean: clean
 	@$(RM) $(NAME)
 	@$(MAKE) fclean -C ./libs/libft
 
-re: fclean all
+re: fclean $(NAME)
 
 mlx42:
 	@git clone $(MLX42_REPO) $(MLX42_DIR)
