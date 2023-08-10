@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/10 13:33:55 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/10 16:52:12 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_is_map_close(t_recursive *info, int x, int y)
 {
 	char	old;
 
-	if (x >= info->x_max || x < 0 || y >= info->y_max || y < 0)
+	if (x >= info->x_max || x < 0 || y >= info->y_max || y < 0 || info->map[y][x] == 0 )
 		return (1);
 	if (info->map[y][x] == ' ')
 	{
@@ -95,7 +95,7 @@ char	**ft_duplicate_table(t_state *state, char **map, size_t heith)
 	{
 		new[i] = ft_calloc(state->map.width + 1, sizeof(char));
 		ii = 0;
-		while (new[i][ii])
+		while (map[i][ii])
 		{
 			new[i][ii] = map[i][ii];
 			ii++;
