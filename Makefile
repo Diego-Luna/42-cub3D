@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/08/09 19:10:22 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/08/09 20:10:02 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,22 @@ OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
 
 OBJS		= $(subst $(S_DIR), $(S_OBJ), $(SRCS:.c=.o))
 
-
 CC = gcc
-# CFLAGS =  -g -Wall -Wextra -Werror -fsanitize=address
 CFLAGS =  -g -Wall -Wextra -Werror
 RM = rm -fr
+
 LIBFT = ./libs/libft/libft.a
- LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+
+# Define the path where MLX42 will be cloned and built
+MLX42_DIR = libs/MLX42
+MLX42_BUILD_DIR = $(MLX42_DIR)/build
+
+# Define the URL for cloning the MLX42 repository
+MLX42_REPO = https://github.com/codam-coding-college/MLX42.git
+
+
+LIB_MLX = -framework Cocoa -framework OpenGL -framework IOKit $(MLX42_DIR)/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
+# LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/"
 # LIB_MLX  = -framework Cocoa -framework OpenGL -framework IOKit libs/MLX42/build/libmlx42.a -Iinclude -lglfw -L"/opt/homebrew/opt/glfw/lib/"
 
 $(S_OBJ)/%.o:$(S_DIR)/%.c
@@ -63,4 +72,9 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+mlx42:
+	@git clone $(MLX42_REPO) $(MLX42_DIR)
+	@cd $(MLX42_DIR) && cmake -B build
+	@cd $(MLX42_DIR) && cmake --build build -j4
+
+.PHONY: all clean fclean re mlx42
