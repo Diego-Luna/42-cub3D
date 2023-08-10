@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/08/09 20:10:02 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/08/09 20:12:20 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ $(NAME): $(OBJS)
 $(S_OBJ):
 	@mkdir -p $(S_OBJ)
 
-all: $(NAME)
+all: mlx42 $(NAME)
 
 clean:
 	@$(RM) $(OFIX) $(S_OBJ)
