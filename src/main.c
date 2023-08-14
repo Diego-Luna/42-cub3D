@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/10 16:50:24 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:08:44 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ int32_t	main(int argc, char *argv[])
 	t_state	state;
 
 	ft_init_state(&state);
+	if (ft_check_file_ext(argv[1]) == FALSE)
+		ft_error_print("wrong file extention ", &state);
 	if (argc != 2 || !ft_check_file(argv[1], &state))
 		ft_error_print("error in file ", &state);
 	ft_save_data(&state, argv[1]);

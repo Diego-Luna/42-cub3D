@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:14:35 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/09 12:34:02 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/14 13:12:35 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	ft_creat_frams(t_state *state)
 		map->c_color.b);
 	ft_change_full_color(game->floor, map->f_color.r, map->f_color.g,
 		map->f_color.b);
-	ft_create_texture(state);
 	ft_create_img(state);
 	mlx_resize_image(game->img_no, WINDOW_W, WINDOW_H);
 	mlx_resize_image(game->img_so, WINDOW_W, WINDOW_H);

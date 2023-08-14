@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/09 12:31:01 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/14 12:10:18 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int	ft_movent_posiblel_ad(t_state *state, int redreccion, double movent_speed)
 
 void	ft_run_game(t_state *state)
 {
+	ft_create_texture(state);
 	ft_init_game(state);
 	ft_creat_frams(state);
 	ft_raycasting(state);

@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:47:18 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/10 16:48:48 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/11 12:45:21 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_is_map(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != ' ' && str[i] != '1' && str[i] != '0' && str[i] != '\n' && str[i] != '\t'
+		if (str[i] != ' ' && str[i] != '1' && str[i] != '0' && str[i] != '\n'
 			&& !(str[i] == 'N' || str[i] == 'S' || str[i] == 'E'
 				|| str[i] == 'W'))
 		{

@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/08/10 12:56:57 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/08/14 13:09:24 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS = src/main.c src/parsing/ft_check_file.c src/parsing/save_data.c \
 				src/raycasting/raycasting.c src/game/control.c src/game/ft_creat_frams.c \
 				src/game/color.c src/game/utils.c src/parsing/img_color.c src/parsing/check_file_color.c \
 				src/parsing/save.c src/parsing/save_2.c src/parsing/get_map_heigth.c \
-				src/parsing/utils.c src/raycasting/utils.c
+				src/parsing/utils.c src/raycasting/utils.c src/utils/check.c
 
 OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
 
