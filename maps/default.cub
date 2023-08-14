@@ -1,7 +1,7 @@
 
 C 0,0,80
 
-NO                                  ./assets/computer.png        
+NO                                  ./assets/computer.png
 SO ./assets/coffee.png
 WE ./assets/small.png
 EA ./assets/skay.png
