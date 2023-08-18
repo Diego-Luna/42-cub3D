@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/14 12:24:26 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:29:32 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_is_map_repeat(t_state *state, char c, size_t y, size_t x)
 {
 	if (state->map.direccion != '\0' && (c == 'N' || c == 'S' || c == 'W'
 			|| c == 'E'))
-		ft_error_print("Error no Map valid, repeat USER 🤯", state);
+		ft_error_print("Error no Map valid, repeat USER", state);
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
 	{
 		state->map.direccion = c;
@@ -112,6 +112,7 @@ int	ft_check_map(t_state *state)
 	int			i;
 
 	ft_map_validity(state, ft_is_map_repeat);
+	ft_map_validity(state, ft_is_map_check_zeros);
 	info.map = ft_duplicate_table(state, state->map.map, state->map.height);
 	info.is_path_exit = 0;
 	info.x_max = state->map.width;

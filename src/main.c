@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:05:36 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/17 16:50:35 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:45:28 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_print_map(t_state *state)
 
 	i = 0;
 	printf("\n\n --> map <--");
-	while (state->map.map[i])
+	while (state->map.map && state->map.map[i])
 	{
 		printf("\n ->{%s} w{%zu}", state->map.map[i],
 			ft_strlen(state->map.map[i]));
@@ -64,6 +64,8 @@ void	ft_init_state_map(t_state *state)
 	state->map.c_color.s_color = NULL;
 	state->map.direccion = '\0';
 	state->map.map = NULL;
+	state->map.width = 0;
+	state->map.height = 0;
 }
 
 void	ft_init_state(t_state *state)
@@ -77,6 +79,7 @@ void	ft_init_state(t_state *state)
 	state->ray.time = 0;
 	state->ray.old_time = 0;
 	state->ray.g_img = NULL;
+	state->error = FALSE;
 }
 
 int32_t	main(int argc, char *argv[])

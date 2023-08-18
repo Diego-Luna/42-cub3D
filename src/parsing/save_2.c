@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:48 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/17 21:31:24 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:44:43 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ void	ft_save_map(t_state *state, char *file)
 	state->map.map = ft_calloc(sizeof(char *), state->map.height + 1);
 	line = get_next_line(fd);
 	i++;
-	while (line != NULL)
+	while (line != NULL && state->error == FALSE)
 	{
 		if (i >= state->map.start_map && ft_is_map(line) == TRUE)
 			state->map.map[ii++] = ft_clean_last(line, state);
+		if (i >= state->map.start_map && ft_is_map(line) == FALSE)
+			state->error = TRUE;
 		line = ft_free(line);
 		line = get_next_line(fd);
 		i++;

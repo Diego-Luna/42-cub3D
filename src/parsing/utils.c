@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/09 12:34:09 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:33:36 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,28 @@ void	ft_position_player(t_state *state, char c)
 		state->player.y += 0.5;
 		state->player.x += 0.5;
 	}
+}
+
+size_t	ft_is_map(char *str)
+{
+	size_t	i;
+	int		found_valid_char;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+		{
+			if (i == 0 || i == ft_strlen(str) - 1 || found_valid_char == FALSE)
+				return (found_valid_char);
+			return (TRUE);
+		}
+		if (str[i] == ' ' || str[i] == '1' || str[i] == '0' || str[i] == 'N'
+			|| str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
+			found_valid_char = TRUE;
+		else
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

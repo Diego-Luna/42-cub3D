@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/17 15:56:12 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 12:43:46 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct s_state
 	t_player		player;
 	t_game			game;
 	t_raycasting	ray;
+	int	error;
 }					t_state;
 
 typedef struct s_info_recursive
@@ -142,10 +143,12 @@ typedef struct s_info_recursive
 }					t_recursive;
 
 // check file
+void				ft_is_map_check_zeros(t_state *state, char c, size_t y,
+						size_t x);
 int					ft_check_file_ext(char *file);
 int					ft_check_file(char *file, t_state *state);
 int					ft_check_path(char *file);
-size_t					ft_is_map(char *str);
+size_t				ft_is_map(char *str);
 int					ft_check_map(t_state *state);
 int					ft_check_file_img_color(char *file, t_state *state);
 int					ft_check_file_img(char *str, int *img);
@@ -185,11 +188,9 @@ void				my_keyhook(mlx_key_data_t keydata, void *param);
 void				ft_change_full_color(mlx_image_t *image, int r, int g,
 						int b);
 void				my_keyhook_rotate_left(t_state *state,
-						mlx_key_data_t keydata,
-						double rot_speed);
+						mlx_key_data_t keydata, double rot_speed);
 void				my_keyhook_rotate_right(t_state *state,
-						mlx_key_data_t keydata,
-						double rot_speed);
+						mlx_key_data_t keydata, double rot_speed);
 int					ft_movent_posiblel_ws(t_state *state, int redreccion,
 						double movent_speed);
 int					ft_movent_posiblel_ad(t_state *state, int redreccion,
