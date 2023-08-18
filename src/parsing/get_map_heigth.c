@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:14:00 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 11:36:37 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:10:50 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_get_map_heigth(t_state *state, char *file)
 	i++;
 	while (line != NULL)
 	{
-		if (i >= state->map.start_map && ft_is_map(line) == TRUE)
+		if (i >= state->map.start_map && ft_is_map(line) >= TRUE)
 			ft_get_map_heigth_utils(state, &start, line);
 		if (i >= state->map.start_map && ft_is_map(line) == FALSE)
 			break ;

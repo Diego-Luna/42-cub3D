@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 12:43:46 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:59:26 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ typedef struct s_state
 	t_player		player;
 	t_game			game;
 	t_raycasting	ray;
-	int	error;
+	int				error;
 }					t_state;
 
 typedef struct s_info_recursive
@@ -143,6 +143,9 @@ typedef struct s_info_recursive
 }					t_recursive;
 
 // check file
+void				ft_is_map_check_user(t_state *state, char c, size_t y,
+						size_t x);
+void				ft_is_map_check(t_state *state, char c, size_t y, size_t x);
 void				ft_is_map_check_zeros(t_state *state, char c, size_t y,
 						size_t x);
 int					ft_check_file_ext(char *file);

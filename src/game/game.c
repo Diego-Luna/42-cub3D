@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 11:34:56 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:43:36 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ int	ft_movent_posiblel_ws(t_state *state, int redreccion, double movent_speed)
 	double	x;
 	double	y;
 
-	x = state->player.x + (redreccion) * state->ray.dir_x * movent_speed;
-	y = state->player.y + (redreccion) * state->ray.dir_y * movent_speed;
+	x = state->player.x + (redreccion) * state->ray.dir_x
+		* (movent_speed * 1.1);
+	y = state->player.y + (redreccion) * state->ray.dir_y
+		* (movent_speed * 1.1);
 	if (x >= (double)state->map.width - 2 || x < 1)
 		return (0);
 	if (y >= (double)state->map.height - 1 || y < 1)
@@ -65,19 +67,20 @@ int	ft_movent_posiblel_ws(t_state *state, int redreccion, double movent_speed)
 	}
 	if (state->map.map[(int)y][(int)x] == '1'
 		|| state->map.map[(int)y][(int)x] == ' ')
-	{
 		return (0);
-	}
 	return (1);
 }
 
-int	ft_movent_posiblel_ad(t_state *state, int redreccion, double movent_speed)
+int	ft_movent_posiblel_ad(t_state *state, int redreccion,
+	double movent_speed)
 {
 	double	x;
 	double	y;
 
-	x = state->player.x + (redreccion) * state->ray.dir_y * movent_speed;
-	y = state->player.y - (redreccion) * state->ray.dir_x * movent_speed;
+	x = state->player.x + (redreccion) * state->ray.dir_y
+		* (movent_speed * 1.1);
+	y = state->player.y - (redreccion) * state->ray.dir_x
+		* (movent_speed * 1.1);
 	if (x >= (double)state->map.width - 2 || x < 1)
 		return (0);
 	if (y >= (double)state->map.height - 1 || y < 1)
@@ -104,9 +107,3 @@ void	ft_run_game(t_state *state)
 	mlx_loop(state->game.mlx);
 	mlx_terminate(state->game.mlx);
 }
-
-// run game
-// 	ini
-// 	hooks
-// 	crea_frams
-// 	free

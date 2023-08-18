@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/18 12:20:07 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 12:36:59 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:43:54 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,32 @@ void	ft_is_map_check_zeros(t_state *state, char c, size_t y, size_t x)
 	}
 	if (error == TRUE)
 		ft_error_print("map not closed", state);
+}
+
+void	ft_is_map_check_user(t_state *state, char c, size_t y, size_t x)
+{
+	int		error;
+	char	**map;
+
+	error = FALSE;
+	map = state->map.map;
+	if (c == 'W' || c == 'S' || c == 'N' || c == 'E')
+	{
+		if (y == 0 || (state->map.height - 1) == y)
+			error = TRUE;
+		if (x == 0 || (ft_strlen(map[y]) - 1) == x)
+			error = TRUE;
+	}
+	if (error == TRUE)
+		ft_error_print("invalid user position", state);
+}
+
+void	ft_is_map_check(t_state *state, char c, size_t y, size_t x)
+{
+	(void)y;
+	(void)x;
+	(void)state;
+	if (c != ' ' && c != '0' && c != '1' && c != 'N' && c != 'S' && c != 'W'
+		&& c != 'E')
+		ft_error_print("invalid character", state);
 }

@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:35 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 12:44:53 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:19:34 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ void	ft_save_img(t_state *state, char *file)
 void	ft_save_data(t_state *state, char *file)
 {
 	ft_save_map(state, file);
-	if (state->error == TRUE)
-		ft_error_print("Invalid character in map", state);
 	ft_save_img(state, file);
 	ft_save_color(state, file);
 }

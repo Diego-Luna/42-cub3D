@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 11:33:36 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:44:19 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ size_t	ft_is_map(char *str)
 	int		found_valid_char;
 
 	i = 0;
+	found_valid_char = FALSE;
 	while (str[i])
 	{
 		if (str[i] == '\n')
@@ -77,9 +78,7 @@ size_t	ft_is_map(char *str)
 		}
 		if (str[i] == ' ' || str[i] == '1' || str[i] == '0' || str[i] == 'N'
 			|| str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
-			found_valid_char = TRUE;
-		else
-			return (FALSE);
+			found_valid_char++;
 		i++;
 	}
 	return (TRUE);

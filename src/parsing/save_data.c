@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 17:56:51 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 12:29:32 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:30:26 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,12 @@ int	ft_check_map(t_state *state)
 	t_recursive	info;
 	int			i;
 
+	ft_map_validity(state, ft_is_map_check);
 	ft_map_validity(state, ft_is_map_repeat);
 	ft_map_validity(state, ft_is_map_check_zeros);
+	ft_map_validity(state, ft_is_map_check_user);
+	if (state->map.direccion == '\0')
+		ft_error_print("you need a user", state);
 	info.map = ft_duplicate_table(state, state->map.map, state->map.height);
 	info.is_path_exit = 0;
 	info.x_max = state->map.width;

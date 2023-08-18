@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:47:18 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/18 11:33:28 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/18 17:58:51 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,13 @@ void	ft_check_file_utils(int *i, int fd)
 		{
 			i[2] = 2;
 			map = TRUE;
+			break ;
 		}
 		str = ft_free(str);
 		str = get_next_line(fd);
 		i[0]++;
 	}
+	str = ft_free(str);
 }
 
 int	ft_check_file(char *file, t_state *state)
