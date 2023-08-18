@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 17:10:30 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/14 12:10:18 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/17 21:31:08 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_init_game(t_state *state)
 		ft_change_degree_radias(state, 0);
 	if (state->map.direccion == 'E')
 		ft_change_degree_radias(state, 3.14159);
+	// game->height = WINDOW_H;
+	// game->width = WINDOW_W;
 	game->height = HEIGHT;
 	game->width = WIDTH;
 	game->mlx = mlx_init(WINDOW_W, WINDOW_H, "cub3D", TRUE);
@@ -59,7 +61,11 @@ int	ft_movent_posiblel_ws(t_state *state, int redreccion, double movent_speed)
 		return (0);
 	if (y >= (double)state->map.height - 1 || y < 1)
 		return (0);
-	if (state->map.map[(int)y][(int)x] == '1')
+	if (ft_strlen(state->map.map[(int)y]) <= (size_t)x)
+	{
+		return (0);
+	}
+	if (state->map.map[(int)y][(int)x] == '1' || state->map.map[(int)y][(int)x] == ' ')
 	{
 		return (0);
 	}
@@ -77,7 +83,11 @@ int	ft_movent_posiblel_ad(t_state *state, int redreccion, double movent_speed)
 		return (0);
 	if (y >= (double)state->map.height - 1 || y < 1)
 		return (0);
-	if (state->map.map[(int)y][(int)x] == '1')
+	if (ft_strlen(state->map.map[(int)y]) <= (size_t)x)
+	{
+		return (0);
+	}
+	if (state->map.map[(int)y][(int)x] == '1' || state->map.map[(int)y][(int)x] == ' ')
 	{
 		return (0);
 	}

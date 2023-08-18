@@ -6,7 +6,7 @@
 #    By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/03 13:29:11 by dluna-lo          #+#    #+#              #
-#    Updated: 2023/08/14 14:43:23 by dluna-lo         ###   ########.fr        #
+#    Updated: 2023/08/17 21:37:29 by dluna-lo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ OBJS_DIRS	= $(foreach dir, $(SUBDIRS), $(addprefix $(S_OBJ)/, $(dir)))
 OBJS		= $(subst $(S_DIR), $(S_OBJ), $(SRCS:.c=.o))
 
 CC = gcc
+# CFLAGS =  -g -Wall -Wextra -Werror -fsanitize=address
 CFLAGS =  -g -Wall -Wextra -Werror
 RM = rm -fr
 

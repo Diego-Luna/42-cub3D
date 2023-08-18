@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 13:10:27 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/14 13:14:03 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:56:12 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ typedef struct s_info_recursive
 int					ft_check_file_ext(char *file);
 int					ft_check_file(char *file, t_state *state);
 int					ft_check_path(char *file);
-int					ft_is_map(char *str);
+size_t					ft_is_map(char *str);
 int					ft_check_map(t_state *state);
 int					ft_check_file_img_color(char *file, t_state *state);
 int					ft_check_file_img(char *str, int *img);

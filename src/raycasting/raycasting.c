@@ -6,7 +6,7 @@
 /*   By: dluna-lo <dluna-lo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 16:13:12 by dluna-lo          #+#    #+#             */
-/*   Updated: 2023/08/10 13:24:21 by dluna-lo         ###   ########.fr       */
+/*   Updated: 2023/08/17 20:56:30 by dluna-lo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_start_textura(t_state *state)
 	double	cell_size_x;
 	double	cell_size_y;
 
-	cell_size_x = WINDOW_W / 1;
-	cell_size_y = WINDOW_H / 1;
+	cell_size_x = WINDOW_W;
+	cell_size_y = WINDOW_H;
 	state->ray.cell_size = fmin(cell_size_x, cell_size_y);
 	mlx_resize_image(state->game.img_no, state->ray.cell_size,
 		state->game.height);
@@ -49,7 +49,7 @@ void	ft_textura_calculation(t_state *state)
 uint32_t	ft_select_texture(t_state *state)
 {
 	if (state->ray.side == SIDE_E)
-		return (((uint32_t *)state->game.img_we->pixels)[state->ray.tex_x
+		return (((uint32_t *)state->game.img_we->pixels)[state->ray.tex_x - 12
 			+ state->ray.tex_y * state->game.img_we->width]);
 	if (state->ray.side == SIDE_W)
 	{
@@ -57,7 +57,7 @@ uint32_t	ft_select_texture(t_state *state)
 			+ state->ray.tex_y * state->game.img_ea->width]);
 	}
 	if (state->ray.side == SIDE_S)
-		return (((uint32_t *)state->game.img_so->pixels)[state->ray.tex_x
+		return (((uint32_t *)state->game.img_so->pixels)[state->ray.tex_x - 12
 			+ state->ray.tex_y * state->game.img_so->width]);
 	if (state->ray.side == SIDE_N)
 		return (((uint32_t *)state->game.img_no->pixels)[state->ray.tex_x
